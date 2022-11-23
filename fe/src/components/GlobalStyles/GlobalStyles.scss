@@ -1,0 +1,58 @@
+@import 'normalize.css';
+
+:root {
+    // Default Layout Header
+    --default-layout-width-sidebar: 240px;
+    --default-layout-height-header: 70px;
+    --default-layout-height-play-control: 90px;
+    --primary-color: #9c27b0;
+    --black-color: #000;
+    --white-color: #fff;
+    --text-color: #dadab9;
+    --bground-slider: rgb(200, 82, 200);
+}
+
+html {
+    // font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
+
+a {
+    text-decoration: none;
+}
+
+#style-1::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+}
+
+#style-2::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 10px;
+}
+
+#style-2::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+}
+
+#style-2::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+}
+
+.btn--cancel {
+    background-color: #8c8c8c !important;
+}
+
