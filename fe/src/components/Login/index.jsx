@@ -34,6 +34,7 @@ export default function Login() {
                 localStorage.setItem('role', res.data.role);
                 localStorage.setItem('id', res.data.id);
                 localStorage.setItem('name', res.data.username);
+                localStorage.setItem('email', res.data.email);
                 navigate(`/${res.data.role}`);
                 window.location.reload();
             } else {
@@ -47,7 +48,7 @@ export default function Login() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh', padding: '20px' }}>
+            <Grid container component="main" sx={{ height: '100vh'}}>
                 <CssBaseline />
                 {/* Image random */}
                 <Grid
@@ -65,7 +66,7 @@ export default function Login() {
                 />
 
                 {/* Login */}
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{height: '100vh'}}>
                     <Box
                         sx={{
                             my: 8,

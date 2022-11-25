@@ -1,9 +1,9 @@
-function GuaranteePage() {
+function GuaranteeDetails() {
     return (
         <>
-            <h2>Guarantee page</h2>
+            <h2>GuaranteeDetails</h2>
         </>
     );
 }
 
-export default GuaranteePage;
+export default GuaranteeDetails;

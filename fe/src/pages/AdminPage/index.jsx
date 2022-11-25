@@ -1,7 +1,9 @@
+import Admin from "~/components/Admin";
+
 function AdminPage() {
     return (
         <>
-            <h2>Admin page</h2>
+            <Admin />
         </>
     );
 }
