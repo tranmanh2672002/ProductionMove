@@ -1,4 +1,4 @@
-import './UserAgencyDetails.scss';
+import './UserGuaranteeDetails.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -33,7 +33,7 @@ const styleModal = {
     p: 3,
 };
 
-function UserAgencyDetails() {
+function UserGuaranteeDetails() {
     const [rows, setRows] = useState([]);
     const [openModalCreate, setOpenModalCreate] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -62,7 +62,7 @@ function UserAgencyDetails() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/user/userAgency');
+                const res = await axios.get('http://localhost:3001/user/userGuarantee');
                 setRows(res.data);
             } catch (err) {
                 console.log('fe : ' + err.message);
@@ -80,7 +80,7 @@ function UserAgencyDetails() {
                 password,
                 sdt,
                 address,
-                role: 'agency',
+                role: 'guarantee',
             });
             if (res.data.register) {
                 window.location.reload();
@@ -136,7 +136,7 @@ function UserAgencyDetails() {
                 }}
             >
                 <Typography variant="h4" sx={{ margin: '10px', color: '#666' }}>
-                    User Admin
+                    User Guarantee
                 </Typography>
 
                 {/* btn new user */}
@@ -439,4 +439,4 @@ function UserAgencyDetails() {
     );
 }
 
-export default UserAgencyDetails;
+export default UserGuaranteeDetails;

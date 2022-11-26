@@ -1,12 +1,13 @@
 import AdminPage from "~/pages/AdminPage";
-import AgencyDetails from "~/pages/AdminPage/AgencyPage";
-import FactoryDetails from "~/pages/AdminPage/GuaranteePage";
-import UserDetails from "~/pages/AdminPage/UserPage";
-import UserAdminDetails from "~/pages/AdminPage/UserPage/UserAdminPage";
-import UserAgencyDetails from "~/pages/AdminPage/UserPage/UserAgencyPage";
-import UserGuaranteeDetails from "~/pages/AdminPage/UserPage/UserGuaranteePage";
+import AdminAgency from "~/pages/AdminPage/AdminAgency";
+import AdminGuarantee from "~/pages/AdminPage/AdminGuarantee";
+import Products from "~/pages/AdminPage/AdminProduct";
+import AdminUser from "~/pages/AdminPage/AdminUser";
+import UserAdminDetails from "~/pages/AdminPage/AdminUser/UserAdminPage";
+import UserAgencyDetails from "~/pages/AdminPage/AdminUser/UserAgencyPage";
+import UserGuaranteeDetails from "~/pages/AdminPage/AdminUser/UserGuaranteePage";
 import AgencyPage from "~/pages/AgencyPage";
-import GuaranteeDetails from "~/pages/GuaranteePage";
+import FactoryPage from "~/pages/FactoryPage";
 import GuaranteePage from "~/pages/GuaranteePage";
 import LoginPage from "~/pages/LoginPage";
 
@@ -24,7 +25,7 @@ const privateAdminRoutes = [
     },
     {
         path: '/Admin/user',
-        component: UserDetails,
+        component: AdminUser,
     },
     {
         path: '/Admin/adminUsers',
@@ -40,15 +41,22 @@ const privateAdminRoutes = [
     },
     {
         path: '/Admin/agency',
-        component: AgencyDetails,
+        component: AdminAgency,
     },
     {
         path: '/Admin/guarantee',
-        component: GuaranteeDetails,
+        component: AdminGuarantee,
     },
     {
-        path: '/Admin/factory',
-        component: FactoryDetails,
+        path: '/Admin/products',
+        component: Products,
+    },
+];
+
+const privateFactoryRoutes = [
+    {
+        path: '/Factory',
+        component: FactoryPage,
     },
 ];
 
@@ -68,4 +76,4 @@ const privateGuaranteeRoutes = [
 
 
 
-export { publicRoutes, privateAdminRoutes, privateAgencyRoutes,  privateGuaranteeRoutes};
+export { publicRoutes, privateAdminRoutes, privateFactoryRoutes, privateAgencyRoutes,  privateGuaranteeRoutes};

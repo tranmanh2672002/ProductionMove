@@ -1,4 +1,4 @@
-import './UserGuaranteeDetails.scss';
+import './Product.scss';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,9 +9,9 @@ import Paper from '@mui/material/Paper';
 import { Box, Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import SendIcon from '@mui/icons-material/Send';
+import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -33,36 +33,25 @@ const styleModal = {
     p: 3,
 };
 
-function UserGuaranteeDetails() {
+function AdminProduct() {
     const [rows, setRows] = useState([]);
     const [openModalCreate, setOpenModalCreate] = useState(false);
-    const [openModalDelete, setOpenModalDelete] = useState(false);
     const [openModalEdit, setOpenModalEdit] = useState(false);
+    const [openModalDelete, setOpenModalDelete] = useState(false);
 
+    const [code, setCode] = useState('');
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordX2, setPasswordX2] = useState('');
-    const [sdt, setSdt] = useState('');
-    const [address, setAddress] = useState('');
+    const [description, setDescription] = useState('');
+    const [image, setImage] = useState('');
+
 
     const [id, setId] = useState('');
-
-    // validate custom
-    useEffect(() => {
-        ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
-            if (value !== password) {
-                return false;
-            }
-            return true;
-        });
-    });
 
     // Get data
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/user/userGuarantee');
+                const res = await axios.get('http://localhost:3001/product/allProducts');
                 setRows(res.data);
             } catch (err) {
                 console.log('fe : ' + err.message);
@@ -71,18 +60,16 @@ function UserGuaranteeDetails() {
         getData();
     }, []);
 
-    // Create user
-    const handleCreateUser = async () => {
+    // Create product
+    const handleCreate = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/user/register', {
+            const res = await axios.post('http://localhost:3001/product/create', {
+                code,
                 name,
-                email,
-                password,
-                sdt,
-                address,
-                role: 'guarantee',
+                description,
+                image,
             });
-            if (res.data.register) {
+            if (res.data.create) {
                 window.location.reload();
                 alert(res.data.msg);
             }
@@ -90,13 +77,18 @@ function UserGuaranteeDetails() {
             console.log('Register failed: ' + err.message);
         }
     };
-    // Delete user
-    const handleDeleteUser = async () => {
+    
+    // update product
+    const handleEdit = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/user/delete', {
+            const res = await axios.post('http://localhost:3001/product/update', {
                 id,
+                code,
+                name,
+                description,
+                image,
             });
-            if (res.data.delete) {
+            if (res.data.update) {
                 window.location.reload();
                 alert(res.data.msg);
             }
@@ -105,16 +97,13 @@ function UserGuaranteeDetails() {
         }
     };
 
-    const handleEditUser = async () => {
+    // delete product
+    const handleDelete = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/user/update', {
+            const res = await axios.post('http://localhost:3001/product/delete', {
                 id,
-                name,
-                email,
-                sdt,
-                address,
             });
-            if (res.data.update) {
+            if (res.data.delete) {
                 window.location.reload();
                 alert(res.data.msg);
             }
@@ -136,7 +125,7 @@ function UserGuaranteeDetails() {
                 }}
             >
                 <Typography variant="h4" sx={{ margin: '10px', color: '#666' }}>
-                    User Admin
+                    Products
                 </Typography>
 
                 {/* btn new user */}
@@ -146,9 +135,9 @@ function UserGuaranteeDetails() {
                     sx={{ margin: '10px' }}
                     onClick={() => {
                         setName('');
-                        setEmail('');
-                        setSdt('');
-                        setAddress('');
+                        setCode('');
+                        setImage('');
+                        setDescription('');
                         setOpenModalCreate(true);
                     }}
                 >
@@ -161,11 +150,9 @@ function UserGuaranteeDetails() {
                         <TableHead>
                             <TableRow>
                                 <TableCell>STT</TableCell>
+                                <TableCell>Code</TableCell>
                                 <TableCell>Name</TableCell>
-                                <TableCell>Email</TableCell>
                                 {/* <TableCell>Password</TableCell> */}
-                                <TableCell>SDT</TableCell>
-                                <TableCell>Address</TableCell>
                                 <TableCell align="center">Chỉnh sửa</TableCell>
                                 <TableCell align="center">Xóa</TableCell>
                             </TableRow>
@@ -180,21 +167,19 @@ function UserGuaranteeDetails() {
                                 >
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell component="th" scope="row" sortDirection="desc">
-                                        {row.name}
+                                        {row.code}
                                     </TableCell>
-                                    <TableCell>{row.username}</TableCell>
+                                    <TableCell>{row.name}</TableCell>
                                     {/* <TableCell size="small">{row.password}</TableCell> */}
-                                    <TableCell>{row.sdt}</TableCell>
-                                    <TableCell>{row.address}</TableCell>
                                     <TableCell
                                         align="center"
                                         onClick={() => {
                                             setOpenModalEdit(true);
                                             setId(row._id);
                                             setName(row.name);
-                                            setEmail(row.username);
-                                            setAddress(row.address);
-                                            setSdt(row.sdt);
+                                            setCode(row.code);
+                                            setDescription(row.description);
+                                            setImage(row.image);
                                         }}
                                     >
                                         <Button variant="text">
@@ -221,7 +206,7 @@ function UserGuaranteeDetails() {
                     </Table>
                 </TableContainer>
             </Box>
-            {/* Modal Create user admin */}
+            {/* Modal Create product */}
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -236,76 +221,52 @@ function UserGuaranteeDetails() {
                 <Fade in={openModalCreate}>
                     <Box sx={styleModal}>
                         <Typography id="transition-modal-title" variant="h6" component="h2">
-                            Create User Admin
+                            Create product
                         </Typography>
-                        <ValidatorForm onSubmit={handleCreateUser}>
+                        <ValidatorForm onSubmit={handleCreate}>
+                            <TextValidator
+                                sx={{ marginTop: '10px' }}
+                                fullWidth
+                                value={code}
+                                label="Mã sản phẩm"
+                                variant="standard"
+                                color="secondary"
+                                validators={['required']}
+                                errorMessages={['Vui lòng nhập mã sản phẩm']}
+                                onChange={(e) => setCode(e.target.value)}
+                            />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
                                 value={name}
-                                label="Name"
+                                label="Tên sản phẩm"
                                 variant="standard"
                                 color="secondary"
                                 validators={['required']}
-                                errorMessages={['Vui lòng nhập tên người dùng']}
+                                errorMessages={['Vui lòng nhập tên sản phẩm']}
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
-                                value={email}
-                                label="Email"
-                                variant="standard"
-                                color="secondary"
-                                validators={['required', 'isEmail']}
-                                errorMessages={['Vui lòng nhập email', 'Email không hợp lệ']}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <TextValidator
-                                sx={{ marginTop: '10px' }}
-                                fullWidth
-                                value={password}
-                                label="Password"
-                                type="password"
+                                value={description}
+                                label="Mô tả"
                                 variant="standard"
                                 color="secondary"
                                 validators={['required']}
-                                errorMessages={['Vui lòng nhập mật khẩu']}
-                                onChange={(e) => setPassword(e.target.value)}
+                                errorMessages={['Vui lòng nhập mô tả']}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
-                                value={passwordX2}
-                                label="Password Again"
-                                type="password"
-                                variant="standard"
-                                color="secondary"
-                                validators={['isPasswordMatch', 'required']}
-                                errorMessages={['Nhập lại mật khẩu không chính xác', 'Vui lòng nhập mật khẩu']}
-                                onChange={(e) => setPasswordX2(e.target.value)}
-                            />
-                            <TextValidator
-                                sx={{ marginTop: '10px' }}
-                                fullWidth
-                                value={sdt}
-                                label="SDT"
+                                value={image}
+                                label="Link image"
                                 variant="standard"
                                 color="secondary"
                                 validators={['required']}
-                                errorMessages={['Vui lòng nhập số điện thoại']}
-                                onChange={(e) => setSdt(e.target.value)}
-                            />
-                            <TextValidator
-                                sx={{ marginTop: '10px' }}
-                                fullWidth
-                                value={address}
-                                label="Address"
-                                variant="standard"
-                                color="secondary"
-                                validators={['required']}
-                                errorMessages={['Vui lòng nhập địa chỉ']}
-                                onChange={(e) => setAddress(e.target.value)}
+                                errorMessages={['Vui lòng nhập địa chỉ ảnh']}
+                                onChange={(e) => setImage(e.target.value)}
                             />
                             <Button
                                 sx={{ marginTop: '10px' }}
@@ -314,13 +275,13 @@ function UserGuaranteeDetails() {
                                 fullWidth
                                 type="submit"
                             >
-                                Đăng ký
+                                Tạo mới
                             </Button>
                         </ValidatorForm>
                     </Box>
                 </Fade>
             </Modal>
-            {/* Modal Edit */}
+            {/* Modal Edit Product*/}
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -337,50 +298,50 @@ function UserGuaranteeDetails() {
                         <Typography id="transition-modal-title" variant="h6" component="h2">
                             Edit User Admin
                         </Typography>
-                        <ValidatorForm onSubmit={handleEditUser}>
+                        <ValidatorForm onSubmit={handleEdit}>
+                        <TextValidator
+                                sx={{ marginTop: '10px' }}
+                                fullWidth
+                                value={code}
+                                label="Mã sản phẩm"
+                                variant="standard"
+                                color="secondary"
+                                validators={['required']}
+                                errorMessages={['Vui lòng nhập mã sản phẩm']}
+                                onChange={(e) => setCode(e.target.value)}
+                            />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
                                 value={name}
-                                label="Name"
+                                label="Tên sản phẩm"
                                 variant="standard"
                                 color="secondary"
                                 validators={['required']}
-                                errorMessages={['Vui lòng nhập tên người dùng']}
+                                errorMessages={['Vui lòng nhập tên sản phẩm']}
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
-                                value={email}
-                                label="Email"
+                                value={description}
+                                label="Mô tả"
                                 variant="standard"
                                 color="secondary"
-                                validators={['required', 'isEmail']}
-                                errorMessages={['Vui lòng nhập email', 'Email không hợp lệ']}
-                                onChange={(e) => setEmail(e.target.value)}
+                                validators={['required']}
+                                errorMessages={['Vui lòng nhập mô tả']}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
-                                value={sdt}
-                                label="SDT"
+                                value={image}
+                                label="Link image"
                                 variant="standard"
                                 color="secondary"
                                 validators={['required']}
-                                errorMessages={['Vui lòng nhập số điện thoại']}
-                                onChange={(e) => setSdt(e.target.value)}
-                            />
-                            <TextValidator
-                                sx={{ marginTop: '10px' }}
-                                fullWidth
-                                value={address}
-                                label="Address"
-                                variant="standard"
-                                color="secondary"
-                                validators={['required']}
-                                errorMessages={['Vui lòng nhập địa chỉ']}
-                                onChange={(e) => setAddress(e.target.value)}
+                                errorMessages={['Vui lòng nhập địa chỉ ảnh']}
+                                onChange={(e) => setImage(e.target.value)}
                             />
                             <Button
                                 sx={{ marginTop: '10px' }}
@@ -427,7 +388,7 @@ function UserGuaranteeDetails() {
                                 variant="contained"
                                 color="error"
                                 sx={{ marginLeft: '10px' }}
-                                onClick={handleDeleteUser}
+                                onClick={handleDelete}
                             >
                                 Delete
                             </Button>
@@ -439,4 +400,4 @@ function UserGuaranteeDetails() {
     );
 }
 
-export default UserGuaranteeDetails;
+export default AdminProduct;

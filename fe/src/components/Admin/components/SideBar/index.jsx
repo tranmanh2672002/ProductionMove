@@ -2,9 +2,9 @@ import { Box, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import './SideBar.scss';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
-import FactoryOutlinedIcon from '@mui/icons-material/FactoryOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 
 function SideBarAdmin() {
     return (
@@ -42,9 +42,9 @@ function SideBarAdmin() {
                         height: 'var(--default-layout-height-header)',
                     }}
                 >
-                    <NavLink to="/admin/factory" className="SideBarAdmin__link">
-                        <FactoryOutlinedIcon className="SideBarAdmin__link-icon" />
-                        Cơ sở sản xuất
+                    <NavLink to="/admin/products" className="SideBarAdmin__link">
+                        <Inventory2OutlinedIcon className="SideBarAdmin__link-icon" />
+                        Quản lý sản phẩm
                     </NavLink>
                     <NavLink to="/admin/agency" className="SideBarAdmin__link">
                         <StoreOutlinedIcon className="SideBarAdmin__link-icon" />

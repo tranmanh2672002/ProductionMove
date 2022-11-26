@@ -5,11 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import adminImage from '~/assets/image/admin.png';
-import agencyImage from '~/assets/image/agency.png';
-import guaranteeImage from '~/assets/image/guarantee.png';
+import adminImage from '~/assets/image/admin.jpg';
+import agencyImage from '~/assets/image/agency.jpg';
+import guaranteeImage from '~/assets/image/guarantee.jpg';
 
-function UserDetails() {
+function AdminUser() {
     const navigate = useNavigate();
 
     return (
@@ -94,4 +94,4 @@ function UserDetails() {
     );
 }
 
-export default UserDetails;
+export default AdminUser;
