@@ -40,7 +40,6 @@ const productCtrl = {
       if (!product) {
         return res.status(400).json({ msg: "Product not found" });
       }
-      
       await Products.findByIdAndUpdate(id, req.body, { new: true });
       res.json({ msg: "Product updated", update: true });
     } catch (error) {
@@ -63,6 +62,19 @@ const productCtrl = {
   getAllProducts: async (req, res) => {
     try {
       const products = await Products.find();
+      if (products) {
+        res.json(products);
+      } else {
+        res.json({ msg: "Not products" });
+      }
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  getAllProductsFactory: async (req, res) => {
+    try {
+      const id = req.params.id;
+      const products = await Products.find({factory: id});
       if (products) {
         res.json(products);
       } else {

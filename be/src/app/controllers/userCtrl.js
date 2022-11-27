@@ -75,7 +75,6 @@ const userCtrl = {
   update: async (req, res) => {
     try {
       const { id } = req.body;
-      console.log(req.body);
 
       const user = await Users.findOne({ _id: id });
       if (!user) return res.status(400).json({ msg: "User not found" });
@@ -114,6 +113,18 @@ const userCtrl = {
   getUserGuarantee: async (req, res) => {
     try {
       const user = await Users.find({ role: "guarantee" });
+      if (user) {
+        res.json(user);
+      } else {
+        res.json({ msg: "Not user admin" });
+      }
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  getUserFactory: async (req, res) => {
+    try {
+      const user = await Users.find({ role: "factory" });
       if (user) {
         res.json(user);
       } else {

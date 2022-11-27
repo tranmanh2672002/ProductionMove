@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import adminImage from '~/assets/image/admin.jpg';
 import agencyImage from '~/assets/image/agency.jpg';
+import factoryImage from '~/assets/image/agency.png';
 import guaranteeImage from '~/assets/image/guarantee.jpg';
 
 function AdminUser() {
@@ -40,8 +41,29 @@ function AdminUser() {
                                 backgroundColor="black"
                             />
                             <CardContent>
-                                <Typography sx={{ textAlign: 'center' }} gutterBottom variant="h5" component="div">
+                                <Typography sx={{ textAlign: 'center', fontSize: '1rem' }} gutterBottom variant="h7" component="div">
                                     Tài Khoản Admin
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
+                    <Card
+                        sx={{ maxWidth: 345, margin: '0 20px' }}
+                        onClick={() => {
+                            navigate('/admin/factoryUsers');
+                        }}
+                    >
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                height="200"
+                                image={factoryImage}
+                                alt="Image"
+                                backgroundColor="black"
+                            />
+                            <CardContent>
+                                <Typography sx={{ textAlign: 'center', fontSize: '1rem' }} gutterBottom variant="h7" component="div">
+                                    Tài Khoản Kho sản xuất
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -61,7 +83,7 @@ function AdminUser() {
                                 backgroundColor="black"
                             />
                             <CardContent>
-                                <Typography sx={{ textAlign: 'center' }} gutterBottom variant="h5" component="div">
+                                <Typography sx={{ textAlign: 'center', fontSize: '1rem' }} gutterBottom variant="h7" component="div">
                                     Tài Khoản Đại lý
                                 </Typography>
                             </CardContent>
@@ -82,10 +104,11 @@ function AdminUser() {
                                 backgroundColor="black"
                             />
                             <CardContent>
-                                <Typography sx={{ textAlign: 'center' }} gutterBottom variant="h5" component="div">
+                                <Typography sx={{ textAlign: 'center', fontSize: '1rem' }} gutterBottom variant="h7" component="div">
                                     Tài Khoản Bảo Hành
                                 </Typography>
                             </CardContent>
+                            
                         </CardActionArea>
                     </Card>
                 </Box>

@@ -5,6 +5,7 @@ import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlin
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 
 function SideBarAdmin() {
     return (
@@ -45,6 +46,10 @@ function SideBarAdmin() {
                     <NavLink to="/admin/products" className="SideBarAdmin__link">
                         <Inventory2OutlinedIcon className="SideBarAdmin__link-icon" />
                         Quản lý sản phẩm
+                    </NavLink>
+                    <NavLink to="/admin/factory" className="SideBarAdmin__link">
+                        <AccountBalanceOutlinedIcon className="SideBarAdmin__link-icon" />
+                        Quản lý Kho
                     </NavLink>
                     <NavLink to="/admin/agency" className="SideBarAdmin__link">
                         <StoreOutlinedIcon className="SideBarAdmin__link-icon" />
