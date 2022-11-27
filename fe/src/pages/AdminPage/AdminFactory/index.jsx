@@ -55,13 +55,12 @@ function AdminFactory() {
                                                 height="250"
                                                 image={storageImage}
                                                 alt="Image"
-                                                backgroundColor="black"
                                             />
                                             <CardContent>
                                                 <Typography
-                                                    sx={{ textAlign: 'center', fontSize: '1rem' }}
+                                                    sx={{ textAlign: 'center', fontSize: '1.2rem' }}
                                                     gutterBottom
-                                                    variant="h7"
+                                                    variant="h4"
                                                     component="div"
                                                 >
                                                     {factory.name}

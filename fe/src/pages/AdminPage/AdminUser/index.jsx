@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import adminImage from '~/assets/image/admin.jpg';
 import agencyImage from '~/assets/image/agency.jpg';
-import factoryImage from '~/assets/image/agency.png';
-import guaranteeImage from '~/assets/image/guarantee.jpg';
+import factoryImage from '~/assets/image/factory.png';
+import guaranteeImage from '~/assets/image/guarantee.png';
 
 function AdminUser() {
     const navigate = useNavigate();

@@ -1,5 +1,6 @@
 import AdminPage from "~/pages/AdminPage";
 import AdminAgency from "~/pages/AdminPage/AdminAgency";
+import AgencyDetails from "~/pages/AdminPage/AdminAgency/AdminAgencyDetails";
 import AdminFactory from "~/pages/AdminPage/AdminFactory";
 import FactoryDetails from "~/pages/AdminPage/AdminFactory/AdminFactoryDetails";
 import AdminGuarantee from "~/pages/AdminPage/AdminGuarantee";
@@ -57,6 +58,10 @@ const privateAdminRoutes = [
     {
         path: '/Admin/agency',
         component: AdminAgency,
+    },
+    {
+        path: '/Admin/agency/:id',
+        component: AgencyDetails,
     },
     {
         path: '/Admin/guarantee',

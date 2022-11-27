@@ -6,5 +6,4 @@ router.get('/:id', factoryCtrl.getFactoryById);
 router.get('/', factoryCtrl.getAllFactories);
 
 
-
 module.exports = router;

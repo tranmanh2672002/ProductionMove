@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const factorySchema = new mongoose.Schema (
+const agencySchema = new mongoose.Schema (
   {
     name: {
       type: String,
@@ -20,4 +20,4 @@ const factorySchema = new mongoose.Schema (
   }
 );
 
-module.exports = mongoose.model("Factories", factorySchema);
+module.exports = mongoose.model("Agencies", agencySchema);

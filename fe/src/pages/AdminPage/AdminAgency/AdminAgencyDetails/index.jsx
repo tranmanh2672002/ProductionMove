@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function FactoryDetails() {
+function AgencyDetails() {
     const { id } = useParams();
     const [rows, setRows] = useState([]);
     const [storage, setStorage] = useState([]);
@@ -28,9 +28,9 @@ function FactoryDetails() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/factory/${id}`);
+                const res = await axios.get(`http://localhost:3001/agency/${id}`);
                 setRows(res.data.products);
-                setStorage(res.data.factory.storage);
+                setStorage(res.data.agency.storage);
 
             } catch (err) {
                 console.error(err);
@@ -39,7 +39,6 @@ function FactoryDetails() {
         getData();
     }, [id]);
 
-    // console.log(amounts.storage);
 
     return (
         <>
@@ -53,7 +52,7 @@ function FactoryDetails() {
                     overflowY: 'scroll',
                 }}
             >
-                <Button onClick={() => navigate('/admin/factory')} variant='outlined' sx={{ margin: '10px',}}>
+                <Button onClick={() => navigate('/admin/agency')} variant='outlined' sx={{ margin: '10px',}}>
                     <KeyboardArrowLeftOutlinedIcon />
                     Quay lại
                 </Button>
@@ -94,4 +93,4 @@ function FactoryDetails() {
     );
 }
 
-export default FactoryDetails;
+export default AgencyDetails;
