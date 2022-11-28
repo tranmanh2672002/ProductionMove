@@ -12,6 +12,10 @@ import UserFactoryDetails from "~/pages/AdminPage/AdminUser/UserFactoryPage";
 import UserGuaranteeDetails from "~/pages/AdminPage/AdminUser/UserGuaranteePage";
 import AgencyPage from "~/pages/AgencyPage";
 import FactoryPage from "~/pages/FactoryPage";
+import FactoryExport from "~/pages/FactoryPage/FactoryExport";
+import FactoryGuarantee from "~/pages/FactoryPage/FactoryGuarantee";
+import FactoryImport from "~/pages/FactoryPage/FactoryImport";
+import FactoryStorage from "~/pages/FactoryPage/FactoryStorage";
 import GuaranteePage from "~/pages/GuaranteePage";
 import LoginPage from "~/pages/LoginPage";
 
@@ -23,6 +27,7 @@ const publicRoutes = [
 ];
 
 const privateAdminRoutes = [
+    // Admin page
     {
         path: '/Admin',
         component: AdminPage,
@@ -77,6 +82,22 @@ const privateFactoryRoutes = [
     {
         path: '/Factory',
         component: FactoryPage,
+    },
+    {
+        path: '/Factory/storage',
+        component: FactoryStorage,
+    },
+    {
+        path: '/Factory/import',
+        component: FactoryImport,
+    },
+    {
+        path: '/Factory/export',
+        component: FactoryExport,
+    },
+    {
+        path: '/Factory/guarantee',
+        component: FactoryGuarantee,
     },
 ];
 

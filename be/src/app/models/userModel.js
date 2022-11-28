@@ -29,6 +29,9 @@ const userSchema = new mongoose.Schema (
       type: String,
       required: true,
     },
+    idPage: {
+      type: String,
+    },
   },
   {
     timestamps: true,

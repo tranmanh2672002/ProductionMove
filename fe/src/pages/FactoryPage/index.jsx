@@ -1,7 +1,9 @@
+import Factory from "~/components/Factory";
+
 function FactoryPage() {
     return (
         <>
-            <h2>FactoryPage</h2>
+            <Factory />
         </>
     );
 }

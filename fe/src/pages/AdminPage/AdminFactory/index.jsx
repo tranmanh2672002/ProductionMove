@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import storageImage from '~/assets/image/storage.png';
+import factoryLogo from '~/assets/image/factorylogo.jpg';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -53,7 +53,7 @@ function AdminFactory() {
                                             <CardMedia
                                                 component="img"
                                                 height="250"
-                                                image={storageImage}
+                                                image={factoryLogo}
                                                 alt="Image"
                                             />
                                             <CardContent>

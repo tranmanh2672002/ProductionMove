@@ -4,9 +4,9 @@ import { useState } from 'react';
 import './TopBar.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import avatar from '~/assets/image/admin.jpg';
+import avatar from '~/assets/image/guarantee.png';
 
-function TopBarAdmin() {
+function TopBarFactory() {
     // open profile user
     const [visible, setVisible] = useState(false);
     const show = () => setVisible(true);
@@ -36,7 +36,7 @@ function TopBarAdmin() {
                     alignItems: 'center',
                 }}
             >
-                <Link to="/admin">
+                <Link to="/factory">
                     <Button
                         sx={{ color: '#666', fontSize: '16px', display: 'flex', alignItems: 'flex-start' }}
                         color="secondary"
@@ -57,7 +57,6 @@ function TopBarAdmin() {
                                     padding: '12px 20px',
                                     borderBottom: '1px solid #ccc',
                                     minWidth: '200px',
-
                                 }}
                             >
                                 <Typography sx={{ fontSize: '0.875rem' }} variant="h6">
@@ -91,4 +90,4 @@ function TopBarAdmin() {
     );
 }
 
-export default TopBarAdmin;
+export default TopBarFactory;

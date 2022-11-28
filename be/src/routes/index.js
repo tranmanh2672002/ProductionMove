@@ -8,7 +8,6 @@ function route(app) {
     app.use('/product', productRouter);
     app.use('/factory', factoryRouter);
     app.use('/agency', agencyRouter);
-
 }
 
 module.exports = route;

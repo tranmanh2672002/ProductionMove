@@ -24,6 +24,7 @@ const userCtrl = {
         username: user.name,
         role: user.role,
         email: user.username,
+        idPage: user.idPage,
       });
     } catch (err) {
       return res.status(500).json({ msg: err.message });

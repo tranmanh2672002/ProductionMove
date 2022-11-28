@@ -3,8 +3,6 @@ import SendIcon from '@mui/icons-material/Send';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -13,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
@@ -35,6 +33,7 @@ export default function Login() {
                 localStorage.setItem('id', res.data.id);
                 localStorage.setItem('name', res.data.username);
                 localStorage.setItem('email', res.data.email);
+                localStorage.setItem('idPage', res.data.idPage);
                 navigate(`/${res.data.role}`);
                 window.location.reload();
             } else {
@@ -48,7 +47,7 @@ export default function Login() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh'}}>
+            <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 {/* Image random */}
                 <Grid
@@ -57,7 +56,10 @@ export default function Login() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random)',
+                        // backgroundImage: 'url(https://source.unsplash.com/random)',
+                        backgroundImage:
+                            'url(https://images.wallpaperscraft.com/image/single/anonymous_hacker_mask_200159_3840x2160.jpg)',
+
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
                         backgroundSize: 'cover',
@@ -66,7 +68,7 @@ export default function Login() {
                 />
 
                 {/* Login */}
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{height: '100vh'}}>
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{ height: '100vh' }}>
                     <Box
                         sx={{
                             my: 8,
@@ -124,10 +126,6 @@ export default function Login() {
                             >
                                 {error}
                             </Typography>
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Nhớ tài khoản"
-                            />
                             <Button
                                 color="secondary"
                                 type="submit"

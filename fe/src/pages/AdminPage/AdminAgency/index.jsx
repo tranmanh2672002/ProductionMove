@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import storageImage from '~/assets/image/storage.png';
+import agencyLogo from '~/assets/image/agencylogo.jpg';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -54,7 +54,7 @@ function AdminAgency() {
                                             <CardMedia
                                                 component="img"
                                                 height="250"
-                                                image={storageImage}
+                                                image={agencyLogo}
                                                 alt="Image"
                                             />
                                             <CardContent>

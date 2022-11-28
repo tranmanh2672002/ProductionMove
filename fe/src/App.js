@@ -1,8 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes, privateAdminRoutes, privateAgencyRoutes, privateGuaranteeRoutes, privateFactoryRoutes } from './routes';
+import {
+    publicRoutes,
+    privateAdminRoutes,
+    privateAgencyRoutes,
+    privateGuaranteeRoutes,
+    privateFactoryRoutes,
+} from './routes';
 import './App.css';
 import SideBarAdmin from './components/Admin/components/SideBar';
 import TopBarAdmin from './components/Admin/components/TopBar';
+import SideBarFactory from './components/Factory/components/SideBar';
+import TopBarFactory from './components/Factory/components/TopBar';
 
 function App() {
     return (
@@ -37,14 +45,18 @@ function App() {
                         })}
                     </Routes>
                 ) : localStorage.getItem('role') === 'factory' ? (
-                    <Routes>
-                        {privateFactoryRoutes.map((route, i) => {
-                            return <Route key={i} path={route.path} element={<route.component />} />;
-                        })}
-                        {publicRoutes.map((route, i) => {
-                            return <Route key={i} path={route.path} element={<route.component />} />;
-                        })}
-                    </Routes>
+                    <>
+                        <SideBarFactory />
+                        <TopBarFactory />
+                        <Routes>
+                            {privateFactoryRoutes.map((route, i) => {
+                                return <Route key={i} path={route.path} element={<route.component />} />;
+                            })}
+                            {publicRoutes.map((route, i) => {
+                                return <Route key={i} path={route.path} element={<route.component />} />;
+                            })}
+                        </Routes>
+                    </>
                 ) : (
                     <Routes>
                         {publicRoutes.map((route, i) => {
