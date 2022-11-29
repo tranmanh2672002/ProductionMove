@@ -7,7 +7,7 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 
-function SideBarFactory() {
+function SideBarAgency() {
     return (
         <>
             <Box
@@ -30,7 +30,7 @@ function SideBarFactory() {
                     }}
                 >
                     <Typography variant="h4" sx={{}}>
-                        Factory
+                        Agency
                     </Typography>
                 </Box>
                 <Box
@@ -43,24 +43,28 @@ function SideBarFactory() {
                         height: 'var(--default-layout-height-header)',
                     }}
                 >
-                    <NavLink to="/factory/storage" className="SideBarFactory__link">
-                        <AccountBalanceOutlinedIcon className="SideBarFactory__link-icon" />
+                    <NavLink to="/agency/product" className="SideBarAgency__link">
+                        <AccountBalanceOutlinedIcon className="SideBarAgency__link-icon" />
+                        Sản phẩm
+                    </NavLink>
+                    <NavLink to="/agency/storage" className="SideBarAgency__link">
+                        <AccountBalanceOutlinedIcon className="SideBarAgency__link-icon" />
                         Quản lý Kho
                     </NavLink>
-                    <NavLink to="/factory/import" className="SideBarFactory__link">
-                        <FileDownloadOutlinedIcon className="SideBarFactory__link-icon" />
+                    <NavLink to="/agency/import" className="SideBarAgency__link">
+                        <FileDownloadOutlinedIcon className="SideBarAgency__link-icon" />
                         Nhập hàng
                     </NavLink>
-                    <NavLink to="/factory/export" className="SideBarFactory__link">
-                        <FileUploadOutlinedIcon className="SideBarFactory__link-icon" />
-                        Chuyển hàng
+                    <NavLink to="/agency/sold" className="SideBarAgency__link">
+                        <FileUploadOutlinedIcon className="SideBarAgency__link-icon" />
+                        SP đã bán
                     </NavLink>
-                    <NavLink to="/factory/delivery" className="SideBarFactory__link">
-                        <LocalShippingOutlinedIcon className="SideBarFactory__link-icon" />
+                    <NavLink to="/agency/delivery" className="SideBarAgency__link">
+                        <LocalShippingOutlinedIcon className="SideBarAgency__link-icon" />
                         Vận chuyển
                     </NavLink>
-                    <NavLink to="/factory/guarantee" className="SideBarFactory__link">
-                        <WorkspacePremiumOutlinedIcon className="SideBarFactory__link-icon" />
+                    <NavLink to="/agency/guarantee" className="SideBarAgency__link">
+                        <WorkspacePremiumOutlinedIcon className="SideBarAgency__link-icon" />
                         Sản Phẩm lỗi
                     </NavLink>
                     
@@ -70,4 +74,4 @@ function SideBarFactory() {
     );
 }
 
-export default SideBarFactory;
+export default SideBarAgency;

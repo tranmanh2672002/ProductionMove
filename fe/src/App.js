@@ -11,6 +11,8 @@ import SideBarAdmin from './components/Admin/components/SideBar';
 import TopBarAdmin from './components/Admin/components/TopBar';
 import SideBarFactory from './components/Factory/components/SideBar';
 import TopBarFactory from './components/Factory/components/TopBar';
+import SideBarAgency from './components/Agency/components/SideBar';
+import TopBarAgency from './components/Agency/components/TopBar';
 
 function App() {
     return (
@@ -27,20 +29,18 @@ function App() {
                         </Routes>
                     </>
                 ) : localStorage.getItem('role') === 'agency' ? (
-                    <Routes>
-                        {privateAgencyRoutes.map((route, i) => {
-                            return <Route key={i} path={route.path} element={<route.component />} />;
-                        })}
-                        {publicRoutes.map((route, i) => {
-                            return <Route key={i} path={route.path} element={<route.component />} />;
-                        })}
-                    </Routes>
+                    <>
+                        <SideBarAgency />
+                        <TopBarAgency />
+                        <Routes>
+                            {privateAgencyRoutes.map((route, i) => {
+                                return <Route key={i} path={route.path} element={<route.component />} />;
+                            })}
+                        </Routes>
+                    </>
                 ) : localStorage.getItem('role') === 'guarantee' ? (
                     <Routes>
                         {privateGuaranteeRoutes.map((route, i) => {
-                            return <Route key={i} path={route.path} element={<route.component />} />;
-                        })}
-                        {publicRoutes.map((route, i) => {
                             return <Route key={i} path={route.path} element={<route.component />} />;
                         })}
                     </Routes>
@@ -50,9 +50,6 @@ function App() {
                         <TopBarFactory />
                         <Routes>
                             {privateFactoryRoutes.map((route, i) => {
-                                return <Route key={i} path={route.path} element={<route.component />} />;
-                            })}
-                            {publicRoutes.map((route, i) => {
                                 return <Route key={i} path={route.path} element={<route.component />} />;
                             })}
                         </Routes>

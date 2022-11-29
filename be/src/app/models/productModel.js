@@ -18,6 +18,10 @@ const productSchema = new mongoose.Schema (
       required: true,
       trim: true,
     },
+    price: {
+      type: Number,
+      required: true,
+    },
     description: {
       type: String,
       required: true,

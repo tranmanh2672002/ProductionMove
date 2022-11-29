@@ -12,7 +12,6 @@ const userCtrl = {
       }
       // const isMatch = (password === user.password);
       const isMatch = await bcrypt.compare(password, user.password);
-      console.log(isMatch);
       if (!isMatch) {
         return res.json({ msg: "Password is not correct", login: false });
       }

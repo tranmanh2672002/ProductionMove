@@ -43,7 +43,7 @@ function AdminProduct() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
-
+    const [price, setPrice] = useState(0);
 
     const [id, setId] = useState('');
 
@@ -68,6 +68,7 @@ function AdminProduct() {
                 name,
                 description,
                 image,
+                price,
             });
             if (res.data.create) {
                 window.location.reload();
@@ -87,6 +88,7 @@ function AdminProduct() {
                 name,
                 description,
                 image,
+                price,
             });
             if (res.data.update) {
                 window.location.reload();
@@ -111,6 +113,11 @@ function AdminProduct() {
             console.log('Register failed: ' + err.message);
         }
     };
+
+    const PriceVND = (price) => {
+        const priceVND = Intl.NumberFormat('en-US').format;
+        return priceVND(price);
+    }
 
     return (
         <>
@@ -137,6 +144,7 @@ function AdminProduct() {
                         setName('');
                         setCode('');
                         setImage('');
+                        setPrice(0);
                         setDescription('');
                         setOpenModalCreate(true);
                     }}
@@ -152,6 +160,7 @@ function AdminProduct() {
                                 <TableCell>STT</TableCell>
                                 <TableCell>Code</TableCell>
                                 <TableCell>Name</TableCell>
+                                <TableCell>Price</TableCell>
                                 {/* <TableCell>Password</TableCell> */}
                                 <TableCell align="center">Chỉnh sửa</TableCell>
                                 <TableCell align="center">Xóa</TableCell>
@@ -170,7 +179,7 @@ function AdminProduct() {
                                         {row.code}
                                     </TableCell>
                                     <TableCell>{row.name}</TableCell>
-                                    {/* <TableCell size="small">{row.password}</TableCell> */}
+                                    <TableCell>{PriceVND(row.price)}</TableCell>
                                     <TableCell
                                         align="center"
                                         onClick={() => {
@@ -180,6 +189,7 @@ function AdminProduct() {
                                             setCode(row.code);
                                             setDescription(row.description);
                                             setImage(row.image);
+                                            setPrice(row.price);
                                         }}
                                     >
                                         <Button variant="text">
@@ -245,6 +255,18 @@ function AdminProduct() {
                                 validators={['required']}
                                 errorMessages={['Vui lòng nhập tên sản phẩm']}
                                 onChange={(e) => setName(e.target.value)}
+                            />
+                            <TextValidator
+                                sx={{ marginTop: '10px' }}
+                                fullWidth
+                                value={price}
+                                type="number"
+                                label="Giá sản phẩm"
+                                variant="standard"
+                                color="secondary"
+                                validators={['required']}
+                                errorMessages={['Vui lòng nhập giá sản phẩm']}
+                                onChange={(e) => setPrice(e.target.value)}
                             />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}
@@ -320,6 +342,18 @@ function AdminProduct() {
                                 validators={['required']}
                                 errorMessages={['Vui lòng nhập tên sản phẩm']}
                                 onChange={(e) => setName(e.target.value)}
+                            />
+                            <TextValidator
+                                sx={{ marginTop: '10px' }}
+                                fullWidth
+                                value={price}
+                                type="number"
+                                label="Giá sản phẩm"
+                                variant="standard"
+                                color="secondary"
+                                validators={['required']}
+                                errorMessages={['Vui lòng nhập giá sản phẩm']}
+                                onChange={(e) => setPrice(e.target.value)}
                             />
                             <TextValidator
                                 sx={{ marginTop: '10px' }}

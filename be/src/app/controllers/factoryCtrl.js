@@ -1,5 +1,6 @@
 const Factories = require("../models/factoryModel");
 const Products = require("../models/productModel");
+const Agencies = require("../models/agencyModel");
 const bcrypt = require("bcrypt");
 
 const factoryCtrl = {
@@ -20,9 +21,10 @@ const factoryCtrl = {
       const id = req.params.id;
       const products = await Products.find({ factory: id });
       const factory = await Factories.findOne({ _id: id });
+      const agencies = await Agencies.find();
 
-      if (products && factory) {
-        res.json({ products, factory });
+      if (products && factory && agencies) {
+        res.json({ products, factory, agencies});
       } else {
         res.json({ msg: "Not products" });
       }
@@ -46,7 +48,6 @@ const factoryCtrl = {
         { new: true }
       );
 
-      console.log(factory.storage);
       res.json({ msg: "Factory updated", update: true });
     } catch (error) {
       return res.status(500).json({ msg: error.message });

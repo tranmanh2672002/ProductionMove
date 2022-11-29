@@ -1,7 +1,9 @@
+import Agency from "~/components/Agency";
+
 function AgencyPage() {
     return (
         <>
-            <h2>Agency page</h2>
+            <Agency />
         </>
     );
 }

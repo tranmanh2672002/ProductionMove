@@ -4,12 +4,10 @@ const productCtrl = {
 
   create: async (req, res) => {
     try {
-      const { code, name, description, image } = req.body;
-      console.log(code, name, description, image);
+      const { code, name, description, image, price } = req.body;
 
       const product = await Products.findOne({ code: code });
       if (product) {
-        console.log('Code product registered');
         return res.json({ msg: "Code product registered", create: false });
       }
       const newProduct = new Products({
@@ -17,12 +15,12 @@ const productCtrl = {
         name,
         description,
         image,
+        price,
         agency: [],
         guarantee: [],
         factory: [],
 
       });
-      console.log('123');
 
       // Save mongodb
       await newProduct.save();

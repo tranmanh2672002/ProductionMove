@@ -78,9 +78,6 @@ function FactoryImport() {
         }
     };
 
-    console.log(amountImport);
-
-    
     return (
         <>
             <Box

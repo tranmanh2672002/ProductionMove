@@ -11,7 +11,11 @@ import UserAgencyDetails from "~/pages/AdminPage/AdminUser/UserAgencyPage";
 import UserFactoryDetails from "~/pages/AdminPage/AdminUser/UserFactoryPage";
 import UserGuaranteeDetails from "~/pages/AdminPage/AdminUser/UserGuaranteePage";
 import AgencyPage from "~/pages/AgencyPage";
+import AgencyImport from "~/pages/AgencyPage/AgencyImport";
+import AgencyProduct from "~/pages/AgencyPage/AgencyProduct";
+import AgencyStorage from "~/pages/AgencyPage/AgencyStorage";
 import FactoryPage from "~/pages/FactoryPage";
+import FactoryDelivery from "~/pages/FactoryPage/FactoryDelivery";
 import FactoryExport from "~/pages/FactoryPage/FactoryExport";
 import FactoryGuarantee from "~/pages/FactoryPage/FactoryGuarantee";
 import FactoryImport from "~/pages/FactoryPage/FactoryImport";
@@ -96,6 +100,10 @@ const privateFactoryRoutes = [
         component: FactoryExport,
     },
     {
+        path: '/Factory/delivery',
+        component: FactoryDelivery,
+    },
+    {
         path: '/Factory/guarantee',
         component: FactoryGuarantee,
     },
@@ -104,6 +112,30 @@ const privateFactoryRoutes = [
 const privateAgencyRoutes = [
     {
         path: '/Agency',
+        component: AgencyPage,
+    },
+    {
+        path: '/Agency/product',
+        component: AgencyProduct,
+    },
+    {
+        path: '/Agency/storage',
+        component: AgencyStorage,
+    },
+    {
+        path: '/Agency/import',
+        component: AgencyImport,
+    },
+    {
+        path: '/Agency/sold',
+        component: AgencyPage,
+    },
+    {
+        path: '/Agency/delivery',
+        component: AgencyPage,
+    },
+    {
+        path: '/Agency/guarantee',
         component: AgencyPage,
     },
 ];
