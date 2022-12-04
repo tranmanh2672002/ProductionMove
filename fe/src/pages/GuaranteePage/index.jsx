@@ -1,7 +1,9 @@
+import Guarantee from "~/components/Guarantee";
+
 function GuaranteePage() {
     return (
         <>
-            <h2>GuaranteePage</h2>
+            <Guarantee />
         </>
     );
 }

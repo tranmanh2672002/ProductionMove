@@ -231,7 +231,7 @@ function AdminProduct() {
                 <Fade in={openModalCreate}>
                     <Box sx={styleModal}>
                         <Typography id="transition-modal-title" variant="h6" component="h2">
-                            Create product
+                            New product
                         </Typography>
                         <ValidatorForm onSubmit={handleCreate}>
                             <TextValidator
@@ -318,7 +318,7 @@ function AdminProduct() {
                 <Fade in={openModalEdit}>
                     <Box sx={styleModal}>
                         <Typography id="transition-modal-title" variant="h6" component="h2">
-                            Edit User Admin
+                            Edit Product
                         </Typography>
                         <ValidatorForm onSubmit={handleEdit}>
                         <TextValidator
@@ -405,7 +405,7 @@ function AdminProduct() {
                 <Fade in={openModalDelete}>
                     <Box sx={styleModal}>
                         <Typography sx={{ color: '#666' }} variant="h6" component="h2">
-                            Delete User ?
+                            Delete Product ?
                         </Typography>
                         <Box
                             sx={{

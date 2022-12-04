@@ -51,7 +51,7 @@ const productCtrl = {
       const product = await Products.findOne({ _id: id });
       if (!product) return res.json({ msg: "Product not found" });
       await Products.findByIdAndDelete(id);
-      res.json({ msg: "User deleted", delete: true });
+      res.json({ msg: "Product deleted", delete: true });
     } catch (error) {
       return res.status(500).json({ msg: error.message });
     }

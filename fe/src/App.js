@@ -13,6 +13,8 @@ import SideBarFactory from './components/Factory/components/SideBar';
 import TopBarFactory from './components/Factory/components/TopBar';
 import SideBarAgency from './components/Agency/components/SideBar';
 import TopBarAgency from './components/Agency/components/TopBar';
+import SideBarGuarantee from './components/Guarantee/components/SideBar';
+import TopBarGuarantee from './components/Guarantee/components/TopBar';
 
 function App() {
     return (
@@ -39,11 +41,15 @@ function App() {
                         </Routes>
                     </>
                 ) : localStorage.getItem('role') === 'guarantee' ? (
-                    <Routes>
-                        {privateGuaranteeRoutes.map((route, i) => {
-                            return <Route key={i} path={route.path} element={<route.component />} />;
-                        })}
-                    </Routes>
+                    <>
+                        <SideBarGuarantee />
+                        <TopBarGuarantee />
+                        <Routes>
+                            {privateGuaranteeRoutes.map((route, i) => {
+                                return <Route key={i} path={route.path} element={<route.component />} />;
+                            })}
+                        </Routes>
+                    </>
                 ) : localStorage.getItem('role') === 'factory' ? (
                     <>
                         <SideBarFactory />

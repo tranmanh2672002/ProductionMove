@@ -175,7 +175,7 @@ function UserAdminDetails() {
                                 <TableRow
                                     id={row._id}
                                     className="row"
-                                    key={index}
+                                    key={row._id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell>{index + 1}</TableCell>

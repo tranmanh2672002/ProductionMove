@@ -39,7 +39,7 @@ function AgencyProduct() {
         const getData = async () => {
             try {
                 const res = await axios.get('http://localhost:3001/product/allProducts');
-                console.log(res.data);
+                // console.log(res.data);
                 setProducts(res.data);
             } catch (e) {
                 console.log(e);

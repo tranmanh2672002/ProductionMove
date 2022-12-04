@@ -41,6 +41,7 @@ const deliveryCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  
   getDeliveriesToId: async (req, res) => {
     try {
       const id = req.params.id;

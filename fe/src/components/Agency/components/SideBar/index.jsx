@@ -6,6 +6,8 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+
 
 function SideBarAgency() {
     return (
@@ -44,7 +46,7 @@ function SideBarAgency() {
                     }}
                 >
                     <NavLink to="/agency/product" className="SideBarAgency__link">
-                        <AccountBalanceOutlinedIcon className="SideBarAgency__link-icon" />
+                        <Inventory2OutlinedIcon className="SideBarAgency__link-icon" />
                         Sản phẩm
                     </NavLink>
                     <NavLink to="/agency/storage" className="SideBarAgency__link">
@@ -59,13 +61,13 @@ function SideBarAgency() {
                         <FileUploadOutlinedIcon className="SideBarAgency__link-icon" />
                         SP đã bán
                     </NavLink>
+                    <NavLink to="/agency/guarantee" className="SideBarAgency__link">
+                        <WorkspacePremiumOutlinedIcon className="SideBarAgency__link-icon" />
+                        Sản Phẩm bảo hành
+                    </NavLink>
                     <NavLink to="/agency/delivery" className="SideBarAgency__link">
                         <LocalShippingOutlinedIcon className="SideBarAgency__link-icon" />
                         Vận chuyển
-                    </NavLink>
-                    <NavLink to="/agency/guarantee" className="SideBarAgency__link">
-                        <WorkspacePremiumOutlinedIcon className="SideBarAgency__link-icon" />
-                        Sản Phẩm lỗi
                     </NavLink>
                     
                 </Box>

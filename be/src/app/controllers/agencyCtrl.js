@@ -1,6 +1,5 @@
 const Agencies = require("../models/agencyModel");
 const Products = require("../models/productModel");
-const bcrypt = require("bcrypt");
 
 const agencyCtrl = {
   getAllAgencies: async (req, res) => {

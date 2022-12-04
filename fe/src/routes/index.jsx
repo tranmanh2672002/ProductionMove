@@ -11,8 +11,10 @@ import UserAgencyDetails from "~/pages/AdminPage/AdminUser/UserAgencyPage";
 import UserFactoryDetails from "~/pages/AdminPage/AdminUser/UserFactoryPage";
 import UserGuaranteeDetails from "~/pages/AdminPage/AdminUser/UserGuaranteePage";
 import AgencyPage from "~/pages/AgencyPage";
+import AgencyGuarantee from "~/pages/AgencyPage/AgencyGuarantee";
 import AgencyImport from "~/pages/AgencyPage/AgencyImport";
 import AgencyProduct from "~/pages/AgencyPage/AgencyProduct";
+import AgencySold from "~/pages/AgencyPage/AgencySold";
 import AgencyStorage from "~/pages/AgencyPage/AgencyStorage";
 import FactoryPage from "~/pages/FactoryPage";
 import FactoryDelivery from "~/pages/FactoryPage/FactoryDelivery";
@@ -21,6 +23,9 @@ import FactoryGuarantee from "~/pages/FactoryPage/FactoryGuarantee";
 import FactoryImport from "~/pages/FactoryPage/FactoryImport";
 import FactoryStorage from "~/pages/FactoryPage/FactoryStorage";
 import GuaranteePage from "~/pages/GuaranteePage";
+import GuaranteeDelivery from "~/pages/GuaranteePage/GuaranteeDelivery";
+import GuaranteeProduct from "~/pages/GuaranteePage/GuaranteeProduct";
+import GuaranteeStatistical from "~/pages/GuaranteePage/GuaranteeStatistical";
 import LoginPage from "~/pages/LoginPage";
 
 const publicRoutes = [
@@ -128,7 +133,7 @@ const privateAgencyRoutes = [
     },
     {
         path: '/Agency/sold',
-        component: AgencyPage,
+        component: AgencySold,
     },
     {
         path: '/Agency/delivery',
@@ -136,7 +141,7 @@ const privateAgencyRoutes = [
     },
     {
         path: '/Agency/guarantee',
-        component: AgencyPage,
+        component: AgencyGuarantee,
     },
 ];
 
@@ -144,6 +149,18 @@ const privateGuaranteeRoutes = [
     {
         path: '/Guarantee',
         component: GuaranteePage,
+    },
+    {
+        path: '/Guarantee/delivery',
+        component: GuaranteeDelivery,
+    },
+    {
+        path: '/Guarantee/product',
+        component: GuaranteeProduct,
+    },
+    {
+        path: '/Guarantee/statistical',
+        component: GuaranteeStatistical,
     },
 ];
 

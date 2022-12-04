@@ -45,7 +45,7 @@ function AgencyImport() {
     };
 
     const handleClickAccept = async (idProduct, amountImport, idDelivery) => {
-        console.log(idDelivery);
+        // console.log(idDelivery);
         const rest = storage.filter((item) => {
             return item.id !== idProduct;
         });
@@ -67,7 +67,7 @@ function AgencyImport() {
                 alert(res.data.msg);
             }
         } catch (err) {
-            console.log('Register failed: ' + err.message);
+            console.log(err.message);
         }
     };
 
@@ -83,7 +83,7 @@ function AgencyImport() {
                     overflowY: 'scroll',
                 }}
             >
-                <Button onClick={() => navigate('/factory')} variant="outlined" sx={{ margin: '10px' }}>
+                <Button onClick={() => navigate('/agency')} variant="outlined" sx={{ margin: '10px' }}>
                     <KeyboardArrowLeftOutlinedIcon />
                     Quay lại
                 </Button>

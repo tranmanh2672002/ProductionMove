@@ -55,13 +55,13 @@ function SideBarFactory() {
                         <FileUploadOutlinedIcon className="SideBarFactory__link-icon" />
                         Chuyển hàng
                     </NavLink>
-                    <NavLink to="/factory/delivery" className="SideBarFactory__link">
-                        <LocalShippingOutlinedIcon className="SideBarFactory__link-icon" />
-                        Vận chuyển
-                    </NavLink>
                     <NavLink to="/factory/guarantee" className="SideBarFactory__link">
                         <WorkspacePremiumOutlinedIcon className="SideBarFactory__link-icon" />
                         Sản Phẩm lỗi
+                    </NavLink>
+                    <NavLink to="/factory/delivery" className="SideBarFactory__link">
+                        <LocalShippingOutlinedIcon className="SideBarFactory__link-icon" />
+                        Vận chuyển
                     </NavLink>
                     
                 </Box>
