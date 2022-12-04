@@ -49,7 +49,7 @@ function AgencySold() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/agency/order/${localStorage.getItem('idPage')}`);
+                const res = await axios.get(`http://localhost:5001/agency/order/${localStorage.getItem('idPage')}`);
                 // console.log(res.data);
                 setRows(res.data.orders);
                 setNameAgency(res.data.nameAgency);
@@ -92,7 +92,7 @@ function AgencySold() {
 
     const handleCreateOrder = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/agency/createOder', {
+            const res = await axios.post('http://localhost:5001/agency/createOder', {
                 idAgency: localStorage.getItem('idPage'),
                 nameAgency: nameAgency,
                 nameCustomer: nameCustomer,
@@ -111,7 +111,7 @@ function AgencySold() {
     };
     const handleGuaranteeOrder = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/agency/createGuaranteeOrder', {
+            const res = await axios.post('http://localhost:5001/agency/createGuaranteeOrder', {
                 idOrder: idOrder,
                 error: error,
                 idAgency: localStorage.getItem('idPage'),

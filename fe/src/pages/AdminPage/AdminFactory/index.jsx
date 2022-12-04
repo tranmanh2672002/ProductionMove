@@ -16,7 +16,7 @@ function AdminFactory() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/factory');
+                const res = await axios.get('http://localhost:5001/factory');
                 setFactories(res.data);
             } catch (err) {
                 console.error(err);

@@ -14,8 +14,8 @@ function AgencyImport() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/delivery/to/${localStorage.getItem('idPage')}`);
-                const resStorage = await axios.get(`http://localhost:3001/agency/${localStorage.getItem('idPage')}`);
+                const res = await axios.get(`http://localhost:5001/delivery/to/${localStorage.getItem('idPage')}`);
+                const resStorage = await axios.get(`http://localhost:5001/agency/${localStorage.getItem('idPage')}`);
                 const newDeliveries = res.data.filter((delivery) => {
                     return delivery.status !== 'Giao hàng thành công';
                 });
@@ -55,11 +55,11 @@ function AgencyImport() {
         var amount = Number(amountImport) + productImport.amount;
 
         try {
-            await axios.post('http://localhost:3001/agency/updateAmount', {
+            await axios.post('http://localhost:5001/agency/updateAmount', {
                 id: localStorage.getItem('idPage'),
                 storage: [{ id: idProduct, amount: amount }, ...rest],
             });
-            const res = await axios.post(`http://localhost:3001/delivery/updateStatus/${idDelivery}`, {
+            const res = await axios.post(`http://localhost:5001/delivery/updateStatus/${idDelivery}`, {
                 status: 'Giao hàng thành công',
             });
             if (res.data.update) {

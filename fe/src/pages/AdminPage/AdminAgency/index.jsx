@@ -16,7 +16,7 @@ function AdminAgency() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/agency');
+                const res = await axios.get('http://localhost:5001/agency');
                 setAgencies(res.data);
 
             } catch (err) {

@@ -62,7 +62,7 @@ function UserFactoryDetails() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/user/userFactory');
+                const res = await axios.get('http://localhost:5001/user/userFactory');
                 setRows(res.data);
             } catch (err) {
                 console.log('fe : ' + err.message);
@@ -74,7 +74,7 @@ function UserFactoryDetails() {
     // Create user
     const handleCreateUser = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/user/register', {
+            const res = await axios.post('http://localhost:5001/user/register', {
                 name,
                 email,
                 password,
@@ -93,7 +93,7 @@ function UserFactoryDetails() {
     // Delete user
     const handleDeleteUser = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/user/delete', {
+            const res = await axios.post('http://localhost:5001/user/delete', {
                 id,
             });
             if (res.data.delete) {
@@ -107,7 +107,7 @@ function UserFactoryDetails() {
 
     const handleEditUser = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/user/update', {
+            const res = await axios.post('http://localhost:5001/user/update', {
                 id,
                 name,
                 email,

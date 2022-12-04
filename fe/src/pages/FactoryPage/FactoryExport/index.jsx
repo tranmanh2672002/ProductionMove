@@ -55,7 +55,7 @@ function FactoryExport() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/factory/${localStorage.getItem('idPage')}`);
+                const res = await axios.get(`http://localhost:5001/factory/${localStorage.getItem('idPage')}`);
                 setAgencies(res.data.agencies);
                 setRows(res.data.products);
                 setStorage(res.data.factory.storage);
@@ -82,11 +82,11 @@ function FactoryExport() {
         }
 
         try {
-            await axios.post('http://localhost:3001/factory/updateAmount', {
+            await axios.post('http://localhost:5001/factory/updateAmount', {
                 id: localStorage.getItem('idPage'),
                 storage: [{ id: idProduct, amount: amount }, ...rest],
             });
-            const res2 = await axios.post('http://localhost:3001/delivery/createDelivery', {
+            const res2 = await axios.post('http://localhost:5001/delivery/createDeliveryByFactory', {
                 from: localStorage.getItem('idPage'),
                 nameFrom: factory.name,
                 to: idAgencyExport,
@@ -196,7 +196,7 @@ function FactoryExport() {
                                 }}
                             >
                                 {agencies.map((agency) => {
-                                    return <MenuItem value={agency._id}>{agency.name}</MenuItem>;
+                                    return <MenuItem key={agency._id} value={agency._id}>{agency.name}</MenuItem>;
                                 })}
                             </Select>
                         </FormControl>

@@ -11,6 +11,7 @@ import UserAgencyDetails from "~/pages/AdminPage/AdminUser/UserAgencyPage";
 import UserFactoryDetails from "~/pages/AdminPage/AdminUser/UserFactoryPage";
 import UserGuaranteeDetails from "~/pages/AdminPage/AdminUser/UserGuaranteePage";
 import AgencyPage from "~/pages/AgencyPage";
+import AgencyDelivery from "~/pages/AgencyPage/AgencyDelivery";
 import AgencyGuarantee from "~/pages/AgencyPage/AgencyGuarantee";
 import AgencyImport from "~/pages/AgencyPage/AgencyImport";
 import AgencyProduct from "~/pages/AgencyPage/AgencyProduct";
@@ -137,7 +138,7 @@ const privateAgencyRoutes = [
     },
     {
         path: '/Agency/delivery',
-        component: AgencyPage,
+        component: AgencyDelivery,
     },
     {
         path: '/Agency/guarantee',

@@ -51,7 +51,7 @@ function AdminProduct() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/product/allProducts');
+                const res = await axios.get('http://localhost:5001/product/allProducts');
                 setRows(res.data);
             } catch (err) {
                 console.log('fe : ' + err.message);
@@ -63,7 +63,7 @@ function AdminProduct() {
     // Create product
     const handleCreate = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/product/create', {
+            const res = await axios.post('http://localhost:5001/product/create', {
                 code,
                 name,
                 description,
@@ -82,7 +82,7 @@ function AdminProduct() {
     // update product
     const handleEdit = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/product/update', {
+            const res = await axios.post('http://localhost:5001/product/update', {
                 id,
                 code,
                 name,
@@ -102,7 +102,7 @@ function AdminProduct() {
     // delete product
     const handleDelete = async () => {
         try {
-            const res = await axios.post('http://localhost:3001/product/delete', {
+            const res = await axios.post('http://localhost:5001/product/delete', {
                 id,
             });
             if (res.data.delete) {

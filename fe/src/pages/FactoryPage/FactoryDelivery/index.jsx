@@ -13,7 +13,7 @@ function FactoryDelivery() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/delivery/from/${localStorage.getItem('idPage')}`);
+                const res = await axios.get(`http://localhost:5001/delivery/from/${localStorage.getItem('idPage')}`);
                 // console.log(res.data);
                 setDeliveries(res.data);
             } catch (e) {

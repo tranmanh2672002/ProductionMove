@@ -20,6 +20,9 @@ const deliverySchema = new mongoose.Schema (
     idProduct: {
       type: String,
     },
+    idGuaranteeOrder: {
+      type: String,
+    },
     amount: {
       type: Number,
     },

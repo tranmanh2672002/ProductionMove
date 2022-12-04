@@ -27,7 +27,7 @@ function AgencyStorage() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/agency/${localStorage.getItem('idPage')}`);
+                const res = await axios.get(`http://localhost:5001/agency/${localStorage.getItem('idPage')}`);
                 setRows(res.data.products);
                 setStorage(res.data.agency.storage);
             } catch (err) {

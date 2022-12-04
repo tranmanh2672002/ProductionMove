@@ -6,15 +6,15 @@ import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeft
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
-function GuaranteeDelivery() {
+function AgencyDelivery() {
     const [deliveries, setDeliveries] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:5001/delivery/to/${localStorage.getItem('idPage')}`);
-                console.log(res.data);
+                const res = await axios.get(`http://localhost:5001/delivery/from/${localStorage.getItem('idPage')}`);
+                // console.log(res.data);
                 setDeliveries(res.data);
             } catch (e) {
                 console.log(e);
@@ -51,7 +51,7 @@ function GuaranteeDelivery() {
                     overflowY: 'scroll',
                 }}
             >
-                <Button onClick={() => navigate('/guarantee')} variant="outlined" sx={{ margin: '10px' }}>
+                <Button onClick={() => navigate('/agency')} variant="outlined" sx={{ margin: '10px' }}>
                     <KeyboardArrowLeftOutlinedIcon />
                     Quay lại
                 </Button>
@@ -91,10 +91,10 @@ function GuaranteeDelivery() {
                                 </Box>
                                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                                     <Typography sx={{ color: '#666', fontSize: '1rem' }} variant="span">
-                                        Vận chuyển từ
+                                        Vận chuyển đến
                                     </Typography>
                                     <Typography sx={{ color: '#666', fontSize: '1rem' }} variant="span">
-                                        {delivery.nameFrom}
+                                        {delivery.nameTo}
                                     </Typography>
                                 </Box>
                                 <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
@@ -105,25 +105,13 @@ function GuaranteeDelivery() {
                                         {getDate(delivery.createdAt)}
                                     </Typography>
                                 </Box>
-                                <Box
-                                    sx={{
-                                        width: '100%',
-                                        display: 'flex',
-                                        justifyContent: 'right',
-                                        margin: '10px 0',
-                                    }}
-                                >
-                                    <Button
-                                        onClick={
-                                            () => {}
-
-                                            // handleClickAccept(delivery.idProduct, delivery.amount, delivery._id)
-                                        }
-                                        variant="contained"
-                                        color="primary"
-                                    >
-                                        Đã nhận được hàng
-                                    </Button>
+                                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                                    <Typography sx={{ color: '#666', fontSize: '1rem' }} variant="span">
+                                        Trạng thái:
+                                    </Typography>
+                                    <Typography sx={{ color: 'blue', fontSize: '1rem' }} variant="span">
+                                        {delivery.status}
+                                    </Typography>
                                 </Box>
                             </ListItem>
                         ))}
@@ -134,4 +122,4 @@ function GuaranteeDelivery() {
     );
 }
 
-export default GuaranteeDelivery;
+export default AgencyDelivery;

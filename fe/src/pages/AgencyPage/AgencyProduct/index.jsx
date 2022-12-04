@@ -38,7 +38,7 @@ function AgencyProduct() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get('http://localhost:3001/product/allProducts');
+                const res = await axios.get('http://localhost:5001/product/allProducts');
                 // console.log(res.data);
                 setProducts(res.data);
             } catch (e) {

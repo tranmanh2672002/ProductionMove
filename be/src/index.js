@@ -18,10 +18,6 @@ try {
     console.log(err);
 }
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
 route(app)
 
 app.listen(PORT, () => {

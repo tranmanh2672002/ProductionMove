@@ -27,7 +27,7 @@ function FactoryStorage() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/factory/${localStorage.getItem('idPage')}`);
+                const res = await axios.get(`http://localhost:5001/factory/${localStorage.getItem('idPage')}`);
                 setRows(res.data.products);
                 setStorage(res.data.factory.storage);
             } catch (err) {

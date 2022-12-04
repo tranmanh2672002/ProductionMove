@@ -28,7 +28,7 @@ function AgencyDetails() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/agency/${id}`);
+                const res = await axios.get(`http://localhost:5001/agency/${id}`);
                 setRows(res.data.products);
                 setStorage(res.data.agency.storage);
 

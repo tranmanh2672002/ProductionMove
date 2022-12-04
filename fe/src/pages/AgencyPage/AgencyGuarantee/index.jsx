@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 import axios from 'axios';
@@ -32,20 +32,27 @@ function AgencyGuarantee() {
     const [rows, setRows] = useState([]);
     const navigate = useNavigate();
     const [listProducts, setListProducts] = useState([]);
+    const [listGuarantees, setListGuarantees] = useState([]);
 
     const [openModalCustomer, setOpenModalCustomer] = useState(false);
     const [idGuaranteeOrder, setIdGuaranteeOrder] = useState('');
 
     const [openModalGuarantee, setOpenModalGuarantee] = useState(false);
+    const [idGuaranteeExport, setIdGuaranteeExport] = useState('');
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:3001/agency/guaranteeOrder/${localStorage.getItem('idPage')}`,
+                    `http://localhost:5001/agency/guaranteeOrder/${localStorage.getItem('idPage')}`,
                 );
+                const resGuarantees = await axios.get('http://localhost:5001/guarantee');
+                if (resGuarantees) {
+                    setListGuarantees(resGuarantees.data);
+                    console.log(resGuarantees.data);
+                }
                 if (res) {
-                    console.log(res.data);
+                    // console.log(res.data);
                     setRows(res.data.guaranteeOrders);
                     setListProducts(res.data.productGuarantees);
                 }
@@ -80,12 +87,25 @@ function AgencyGuarantee() {
     };
 
     const handleDeliveryGuarantee = async () => {
+        // console.log(localStorage.getItem('idPage'), localStorage.getItem('name'), idGuaranteeExport, idGuaranteeOrder);
+        // console.log(idGuaranteeExport);
+        
+        let guarantee = listGuarantees.find(guarantee => {
+            return guarantee._id === idGuaranteeExport;
+        })
+
         try {
-            const res = await axios.get(
-                `http://localhost:3001/agency/getGuaranteeOrder/${localStorage.getItem('idPage')}`,
-            );
-            if (res) {
-                console.log(res.data);
+            const res = await axios.post('http://localhost:5001/delivery/createDeliveryByAgency', {
+                from: localStorage.getItem('idPage'),
+                nameFrom: localStorage.getItem('name'),
+                to: idGuaranteeExport,
+                nameTo: guarantee.name,
+                idGuaranteeOrder: idGuaranteeOrder,
+                status: 'Đang giao hàng',
+            });
+            if (res.data.create) {
+                alert(res.data.msg);
+                window.location.reload();
             }
         } catch (e) {
             console.log(e);
@@ -95,12 +115,11 @@ function AgencyGuarantee() {
     const handleDeliveryCustomer = async () => {
         // console.log(idOrder);
         try {
-            const res = await axios.put(`http://localhost:3001/agency/updateNotGuaranteeOrder/${idGuaranteeOrder}`);
-            if(res.data.update){
+            const res = await axios.put(`http://localhost:5001/agency/updateNotGuaranteeOrder/${idGuaranteeOrder}`);
+            if (res.data.update) {
                 alert(res.data.msg);
                 window.location.reload();
-            };
-
+            }
         } catch (e) {
             console.log(e);
         }
@@ -155,8 +174,8 @@ function AgencyGuarantee() {
                                         <Button
                                             onClick={() => {
                                                 setIdGuaranteeOrder(row._id);
-                                                setOpenModalCustomer(true)}
-                                            }
+                                                setOpenModalCustomer(true);
+                                            }}
                                             variant="outlined"
                                             color="secondary"
                                         >
@@ -166,6 +185,7 @@ function AgencyGuarantee() {
                                     <TableCell>
                                         <Button
                                             onClick={() => {
+                                                setIdGuaranteeOrder(row._id);
                                                 setOpenModalGuarantee(true);
                                             }}
                                             variant="outlined"
@@ -247,6 +267,27 @@ function AgencyGuarantee() {
                         >
                             Chuyển hàng tới trung tâm bảo hành
                         </Typography>
+                        <FormControl fullWidth sx={{ margin: '15px 0' }}>
+                            <InputLabel id="demo-simple-select-label">Đại lý</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={idGuaranteeExport}
+                                label="Đại lý"
+                                onChange={(e) => {
+                                    console.log(e.target.value);
+                                    setIdGuaranteeExport(e.target.value);
+                                }}
+                            >
+                                {listGuarantees.map((guarantee) => {
+                                    return (
+                                        <MenuItem key={guarantee._id} value={guarantee._id}>
+                                            {guarantee.name}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
                             <Button

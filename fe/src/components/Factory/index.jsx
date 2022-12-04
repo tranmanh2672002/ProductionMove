@@ -9,7 +9,7 @@ function Factory() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/factory/${localStorage.getItem('idPage')}`);
+                const res = await axios.get(`http://localhost:5001/factory/${localStorage.getItem('idPage')}`);
                 setFactory(res.data.factory);
             } catch (e) {
                 console.error(e);

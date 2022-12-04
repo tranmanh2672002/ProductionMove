@@ -28,7 +28,7 @@ function FactoryDetails() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/factory/${id}`);
+                const res = await axios.get(`http://localhost:5001/factory/${id}`);
                 setRows(res.data.products);
                 setStorage(res.data.factory.storage);
 
