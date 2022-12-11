@@ -76,7 +76,7 @@ function UserGuaranteeDetails() {
         try {
             const res = await axios.post('http://localhost:5001/user/register', {
                 name,
-                email,
+                username: email,
                 password,
                 sdt,
                 address,

@@ -110,7 +110,7 @@ function UserAdminDetails() {
             const res = await axios.post('http://localhost:5001/user/update', {
                 id,
                 name,
-                email,
+                username: email,
                 sdt,
                 address,
             });
