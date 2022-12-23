@@ -143,8 +143,8 @@ function AgencySold() {
                     Quay lại
                 </Button>
 
-                <TableContainer sx={{ padding: '10px 10px 20px' }} component={Paper}>
-                    <Button onClick={() => setOpenModalCreate(true)} variant="outlined" color="secondary">
+                <TableContainer sx={{ marginTop: '10px' }} component={Paper}>
+                    <Button sx={{marginLeft: '10px'}} onClick={() => setOpenModalCreate(true)} variant="outlined" color="secondary">
                         Tạo hóa đơn
                     </Button>
                     <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">

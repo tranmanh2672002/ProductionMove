@@ -90,12 +90,12 @@ function FactoryImport() {
                     overflowY: 'scroll',
                 }}
             >
-                <Button onClick={() => navigate('/factory')} variant="outlined" sx={{ margin: '10px' }}>
+                <Button onClick={() => navigate('/factory')} variant="outlined" sx={{ margin: '10px 20px' }}>
                     <KeyboardArrowLeftOutlinedIcon />
                     Quay lại
                 </Button>
 
-                <TableContainer sx={{ padding: '40px 20px' }} component={Paper}>
+                <TableContainer sx={{marginTop: '10px'}} component={Paper}>
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow>

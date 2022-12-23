@@ -10,7 +10,7 @@ router.get('/order/:id', orderCtrl.getOderFromIdAgency);
 router.post('/createOder/', orderCtrl.createOder);
 router.post('/createGuaranteeOrder/', guaranteeOrderCtrl.createGuaranteeOrder);
 router.put('/updateNotGuaranteeOrder/:id', guaranteeOrderCtrl.updateNotGuaranteeOrder);
-router.get('/guaranteeOrder/:id', guaranteeOrderCtrl.getGuaranteeOrderById);
+router.get('/guaranteeOrder/:id', guaranteeOrderCtrl.getGuaranteeOrderByIdAgency);
 router.get('/', agencyCtrl.getAllAgencies);
 router.get('/:id', agencyCtrl.getAgencyById);
 

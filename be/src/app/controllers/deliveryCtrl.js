@@ -38,12 +38,13 @@ const deliveryCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+
   createDeliveryByAgency: async (req, res) => {
     try {
       const { from, nameFrom, to, nameTo, idGuaranteeOrder, status } = req.body;
-      console.log(
-        from + " " + nameFrom + " " + to + " " + idGuaranteeOrder + " " + status
-      );
+      // console.log(
+      //   from + " " + nameFrom + " " + to + " " + idGuaranteeOrder + " " + status
+      // );
       const guaranteeOrder = await GuaranteeOrders.findOne({
         _id: idGuaranteeOrder,
       });
@@ -51,7 +52,10 @@ const deliveryCtrl = {
         console.log(guaranteeOrder);
         await GuaranteeOrders.findByIdAndUpdate(
           idGuaranteeOrder,
-          { idGuarantee: to, status: "guarantee" },
+          { 
+            idGuarantee: to, 
+            status: "",
+          },
           { new: true }
         );
       }

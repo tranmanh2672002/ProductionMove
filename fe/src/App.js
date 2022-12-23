@@ -14,7 +14,8 @@ import TopBarFactory from './components/Factory/components/TopBar';
 import SideBarAgency from './components/Agency/components/SideBar';
 import TopBarAgency from './components/Agency/components/TopBar';
 import SideBarGuarantee from './components/Guarantee/components/SideBar';
-import TopBarGuarantee from './components/Guarantee/components/TopBar';
+import TopBarGuarantee from '~/components/Guarantee/components/TopBar';
+
 
 function App() {
     return (

@@ -142,7 +142,7 @@ function AgencyGuarantee() {
                     Quay lại
                 </Button>
 
-                <TableContainer sx={{ padding: '10px 10px 20px' }} component={Paper}>
+                <TableContainer sx={{ marginTop: '10px' }} component={Paper}>
                     <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
                         <TableHead>
                             <TableRow>
@@ -268,12 +268,12 @@ function AgencyGuarantee() {
                             Chuyển hàng tới trung tâm bảo hành
                         </Typography>
                         <FormControl fullWidth sx={{ margin: '15px 0' }}>
-                            <InputLabel id="demo-simple-select-label">Đại lý</InputLabel>
+                            <InputLabel id="demo-simple-select-label">Trung tâm bảo hành</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={idGuaranteeExport}
-                                label="Đại lý"
+                                label="Trung tâm bảo hành"
                                 onChange={(e) => {
                                     console.log(e.target.value);
                                     setIdGuaranteeExport(e.target.value);

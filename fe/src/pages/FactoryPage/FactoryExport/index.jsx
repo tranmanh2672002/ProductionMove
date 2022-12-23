@@ -46,8 +46,8 @@ function FactoryExport() {
     const navigate = useNavigate();
 
     const getAmount = (id) => {
-        var result = storage.find((item) => {
-            return item.id === id;
+        var result = storage.find((product) => {
+            return product.id === id;
         });
         return result.amount;
     };
@@ -56,6 +56,7 @@ function FactoryExport() {
         const getData = async () => {
             try {
                 const res = await axios.get(`http://localhost:5001/factory/${localStorage.getItem('idPage')}`);
+                console.log(res.data);
                 setAgencies(res.data.agencies);
                 setRows(res.data.products);
                 setStorage(res.data.factory.storage);
@@ -118,12 +119,12 @@ function FactoryExport() {
                     overflowY: 'scroll',
                 }}
             >
-                <Button onClick={() => navigate('/factory')} variant="outlined" sx={{ margin: '10px' }}>
+                <Button onClick={() => navigate('/factory')} variant="outlined" sx={{ margin: '10px 20px' }}>
                     <KeyboardArrowLeftOutlinedIcon />
                     Quay lại
                 </Button>
 
-                <TableContainer sx={{ padding: '40px 20px' }} component={Paper}>
+                <TableContainer sx={{marginTop: '10px'}} component={Paper}>
                     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow>

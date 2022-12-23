@@ -68,7 +68,6 @@ function FactoryDelivery() {
                     <List
                         sx={{
                             Width: '100%',
-                            padding: '0 20px',
                         }}
                     >
                         {deliveries.map((delivery) => (

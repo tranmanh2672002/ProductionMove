@@ -59,7 +59,7 @@ function AgencyImport() {
                 id: localStorage.getItem('idPage'),
                 storage: [{ id: idProduct, amount: amount }, ...rest],
             });
-            const res = await axios.post(`http://localhost:5001/delivery/updateStatus/${idDelivery}`, {
+            const res = await axios.put(`http://localhost:5001/delivery/updateStatus/${idDelivery}`, {
                 status: 'Giao hàng thành công',
             });
             if (res.data.update) {
@@ -100,7 +100,6 @@ function AgencyImport() {
                     <List
                         sx={{
                             Width: '100%',
-                            padding: '0 20px',
                         }}
                     >
                         {deliveries.length !== 0 ? (

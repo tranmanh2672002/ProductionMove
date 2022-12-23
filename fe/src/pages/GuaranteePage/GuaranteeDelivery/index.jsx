@@ -14,8 +14,11 @@ function GuaranteeDelivery() {
         const getData = async () => {
             try {
                 const res = await axios.get(`http://localhost:5001/delivery/to/${localStorage.getItem('idPage')}`);
-                console.log(res.data);
-                setDeliveries(res.data);
+                // console.log(res.data);
+                const newDeliveries = res.data.filter((delivery) => {
+                    return delivery.status !== 'Giao hàng thành công';
+                });
+                setDeliveries(newDeliveries);
             } catch (e) {
                 console.log(e);
             }
@@ -37,6 +40,28 @@ function GuaranteeDelivery() {
         }
 
         return dt + '/' + month + '/' + year;
+    };
+
+    const handleClickAccept = async (idGuaranteeOrder, idDelivery) => {
+        // console.log(idGuaranteeOrder);
+
+        try {
+            const res = await axios.put(`http://localhost:5001/delivery/updateStatus/${idDelivery}`, {
+                status: 'Giao hàng thành công',
+            });
+            const resUpdateStatusGuarantee = await axios.put(
+                `http://localhost:5001/guarantee/updateStatusGuarantee/${idGuaranteeOrder}`,
+                {
+                    status: 'guarantee',
+                },
+            );
+            if (res.data.update && resUpdateStatusGuarantee.data.update) {
+                window.location.reload();
+                alert(res.data.msg);
+            }
+        } catch (err) {
+            console.log(err.message);
+        }
     };
 
     return (
@@ -68,7 +93,6 @@ function GuaranteeDelivery() {
                     <List
                         sx={{
                             Width: '100%',
-                            padding: '0 20px',
                         }}
                     >
                         {deliveries.map((delivery) => (
@@ -114,11 +138,7 @@ function GuaranteeDelivery() {
                                     }}
                                 >
                                     <Button
-                                        onClick={
-                                            () => {}
-
-                                            // handleClickAccept(delivery.idProduct, delivery.amount, delivery._id)
-                                        }
+                                        onClick={() => handleClickAccept(delivery.idGuaranteeOrder, delivery._id)}
                                         variant="contained"
                                         color="primary"
                                     >

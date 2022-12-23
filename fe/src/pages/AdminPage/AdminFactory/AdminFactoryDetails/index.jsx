@@ -58,7 +58,7 @@ function FactoryDetails() {
                     Quay lại
                 </Button>
 
-                <TableContainer sx={{ padding: '40px 20px' }} component={Paper}>
+                <TableContainer sx={{marginTop: '10px'}} component={Paper}>
                     <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
                         <TableHead>
                             <TableRow>

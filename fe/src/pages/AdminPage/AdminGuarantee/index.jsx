@@ -11,13 +11,13 @@ import axios from 'axios';
 
 function AdminGuarantee() {
     const navigate = useNavigate();
-    const [factories, setFactories] = useState([]);
+    const [guarantee, setGuarantee] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const res = await axios.get('http://localhost:5001/guarantee');
-                setFactories(res.data);
+                setGuarantee(res.data);
                 // console.log(res.data);
             } catch (err) {
                 console.error(err);
@@ -40,14 +40,14 @@ function AdminGuarantee() {
                     }}
                 >
                     <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
-                        {factories.map((factory) => {
+                        {guarantee.map((guarantee) => {
                             return (
                                 <>
                                     <Card
-                                        key={factory._id}
+                                        key={guarantee._id}
                                         sx={{ maxWidth: 345, margin: '0 20px' }}
                                         onClick={() => {
-                                            navigate(`/admin/factory/${factory._id}`);
+                                            navigate(`/admin/guarantee/${guarantee._id}`);
                                         }}
                                     >
                                         <CardActionArea>
@@ -64,7 +64,7 @@ function AdminGuarantee() {
                                                     variant="h4"
                                                     component="div"
                                                 >
-                                                    {factory.name}
+                                                    {guarantee.name}
                                                 </Typography>
                                             </CardContent>
                                         </CardActionArea>
