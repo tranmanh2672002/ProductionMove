@@ -1,6 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
+import guaranteeImage from '~/assets/image/guaranteelogo.jpg';
 
 function Guarantee() {
 
@@ -32,12 +37,47 @@ function Guarantee() {
                 }}
             >
                 {guarantee ? (
-                    <Box sx={{margin: '20px 10px'}}>
-                        <Typography sx={{color: '#666', marginTop: '10px'}} variant="h4">Name: {guarantee.name}</Typography>
-                        <Typography sx={{color: '#666', marginTop: '10px'}} variant="h4">Address: {guarantee.address}</Typography>
-                        <Typography sx={{color: '#666', marginTop: '10px'}} variant="h4">Hoạt động: Thứ 2 - Thứ 7 (7h -22h)   </Typography>
-
+                    <>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
+                        <Card sx={{ maxWidth: 750, margin: '0 20px' }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    height="300"
+                                    image={guaranteeImage}
+                                    alt="Image"
+                                    backgroundColor="black"
+                                />
+                                <CardContent>
+                                    <Typography
+                                        sx={{ marginTop: '10px', textAlign: 'center', fontSize: '1.4rem' }}
+                                        gutterBottom
+                                        variant="h7"
+                                        component="div"
+                                    >
+                                        {guarantee.name}
+                                    </Typography>
+                                    <Typography
+                                        sx={{ marginTop: '10px', textAlign: 'center', fontSize: '1.4rem' }}
+                                        gutterBottom
+                                        variant="h7"
+                                        component="div"
+                                    >
+                                        {guarantee.address}
+                                    </Typography>
+                                    <Typography
+                                        sx={{ marginTop: '10px', textAlign: 'center', fontSize: '1.4rem' }}
+                                        gutterBottom
+                                        variant="h7"
+                                        component="div"
+                                    >
+                                        Hoạt động: Thứ 2 - Thứ 7 (7h -22h)
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
                     </Box>
+                </>
                 ) : (
                     <></>
                 )}

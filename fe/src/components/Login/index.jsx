@@ -78,7 +78,7 @@ export default function Login() {
                             alignItems: 'center',
                         }}
                     >
-                        <Typography component="h1" variant="h2" mb={2}>
+                        <Typography sx={{fontWeight: '400'}} component="h1" variant="h2" mb={2}>
                             BigCorp
                         </Typography>
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
