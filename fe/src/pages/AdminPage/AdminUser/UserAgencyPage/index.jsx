@@ -11,6 +11,8 @@ import { Typography } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import { useNavigate } from 'react-router-dom';
 import SendIcon from '@mui/icons-material/Send';
 
 import { useEffect, useState } from 'react';
@@ -34,6 +36,7 @@ const styleModal = {
 };
 
 function UserAgencyDetails() {
+    const navigate = useNavigate();
     const [rows, setRows] = useState([]);
     const [openModalCreate, setOpenModalCreate] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -135,6 +138,10 @@ function UserAgencyDetails() {
                     overflowY: 'scroll',
                 }}
             >
+                <Button onClick={() => navigate('/admin/user')} variant='outlined' sx={{ margin: '10px',}}>
+                    <KeyboardArrowLeftOutlinedIcon />
+                    Quay lại
+                </Button>
                 <Typography variant="h4" sx={{ margin: '10px', color: '#666' }}>
                     User Agency
                 </Typography>

@@ -31,7 +31,6 @@ function AdminFactory() {
                 <Box
                     id="style-2"
                     sx={{
-                        backgroundColor: '#fff',
                         width: 'calc(100% - var(--default-layout-width-sidebar))',
                         height: 'calc(100vh - var(--default-layout-height-header))',
                         float: 'right',
@@ -41,34 +40,27 @@ function AdminFactory() {
                     <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
                         {factories.map((factory) => {
                             return (
-                                <>
-                                    <Card
-                                        key={factory._id}
-                                        sx={{ maxWidth: 345, margin: '0 20px' }}
-                                        onClick={() => {
-                                            navigate(`/admin/factory/${factory._id}`);
-                                        }}
-                                    >
-                                        <CardActionArea>
-                                            <CardMedia
-                                                component="img"
-                                                height="250"
-                                                image={factoryLogo}
-                                                alt="Image"
-                                            />
-                                            <CardContent>
-                                                <Typography
-                                                    sx={{ textAlign: 'center', fontSize: '1.2rem' }}
-                                                    gutterBottom
-                                                    variant="h4"
-                                                    component="div"
-                                                >
-                                                    {factory.name}
-                                                </Typography>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                </>
+                                <Card
+                                    key={factory._id}
+                                    sx={{ maxWidth: 345, margin: '0 20px' }}
+                                    onClick={() => {
+                                        navigate(`/admin/factory/${factory._id}`);
+                                    }}
+                                >
+                                    <CardActionArea>
+                                        <CardMedia component="img" height="250" image={factoryLogo} alt="Image" />
+                                        <CardContent>
+                                            <Typography
+                                                sx={{ textAlign: 'center', fontSize: '1.2rem' }}
+                                                gutterBottom
+                                                variant="h4"
+                                                component="div"
+                                            >
+                                                {factory.name}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
                             );
                         })}
                     </Box>

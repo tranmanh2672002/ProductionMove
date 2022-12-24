@@ -11,6 +11,8 @@ import { Typography } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+
 import SendIcon from '@mui/icons-material/Send';
 
 import { useEffect, useState } from 'react';
@@ -20,6 +22,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { useNavigate } from 'react-router-dom';
 
 const styleModal = {
     position: 'absolute',
@@ -34,6 +37,7 @@ const styleModal = {
 };
 
 function UserAdminDetails() {
+    const navigate = useNavigate();
     const [rows, setRows] = useState([]);
     const [openModalCreate, setOpenModalCreate] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -135,6 +139,10 @@ function UserAdminDetails() {
                     overflowY: 'scroll',
                 }}
             >
+                <Button onClick={() => navigate('/admin/user')} variant='outlined' sx={{ margin: '10px',}}>
+                    <KeyboardArrowLeftOutlinedIcon />
+                    Quay lại
+                </Button>
                 <Typography variant="h4" sx={{ margin: '10px', color: '#666' }}>
                     User Admin
                 </Typography>

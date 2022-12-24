@@ -42,7 +42,6 @@ function AdminGuarantee() {
                     <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
                         {guarantee.map((guarantee) => {
                             return (
-                                <>
                                     <Card
                                         key={guarantee._id}
                                         sx={{ maxWidth: 345, margin: '0 20px' }}
@@ -69,7 +68,6 @@ function AdminGuarantee() {
                                             </CardContent>
                                         </CardActionArea>
                                     </Card>
-                                </>
                             );
                         })}
                     </Box>

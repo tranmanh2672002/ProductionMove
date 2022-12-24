@@ -4,6 +4,7 @@ import AgencyDetails from "~/pages/AdminPage/AdminAgency/AdminAgencyDetails";
 import AdminFactory from "~/pages/AdminPage/AdminFactory";
 import FactoryDetails from "~/pages/AdminPage/AdminFactory/AdminFactoryDetails";
 import AdminGuarantee from "~/pages/AdminPage/AdminGuarantee";
+import GuaranteeDetails from "~/pages/AdminPage/AdminGuarantee/AdminGuaranteeDetails";
 import Products from "~/pages/AdminPage/AdminProduct";
 import AdminUser from "~/pages/AdminPage/AdminUser";
 import UserAdminDetails from "~/pages/AdminPage/AdminUser/UserAdminPage";
@@ -81,6 +82,10 @@ const privateAdminRoutes = [
     {
         path: '/Admin/guarantee',
         component: AdminGuarantee,
+    },
+    {
+        path: '/Admin/guarantee/:id',
+        component: GuaranteeDetails,
     },
     {
         path: '/Admin/products',
