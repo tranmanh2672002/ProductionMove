@@ -89,6 +89,9 @@ function UserAdminDetails() {
             if (res.data.register) {
                 window.location.reload();
                 alert(res.data.msg);
+            } else {
+                window.location.reload();
+                alert(res.data.msg);
             }
         } catch (err) {
             console.log('Register failed: ' + err.message);

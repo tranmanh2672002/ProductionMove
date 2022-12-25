@@ -1,10 +1,34 @@
 const Users = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
+const isEmail = (value) => {
+  var regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  console.log(regex.test(value));
+  return regex.test(value) ? true : false;
+};
+
+const validateName = (name) => {
+  dname = name;
+  ss = dname.split(" ");
+  dname = "";
+  for (i = 0; i < ss.length; i++)
+    if (ss[i].length > 0) {
+      if (dname.length > 0) dname = dname + " ";
+      dname = dname + ss[i].substring(0, 1).toUpperCase();
+      dname = dname + ss[i].substring(1).toLowerCase();
+    }
+  return dname;
+};
+
 const userCtrl = {
   login: async (req, res) => {
     try {
       const { username, password } = req.body;
+      if (!isEmail(username)) {
+        return res.json({ msg: "Email ?? ", login: false });
+      }
+      console.log(req.body);
       const user = await Users.findOne({ username });
 
       if (!user) {
@@ -16,7 +40,7 @@ const userCtrl = {
         return res.json({ msg: "Password is not correct", login: false });
       }
 
-      res.json({
+      return res.json({
         msg: "Login is correct",
         login: true,
         id: user._id,
@@ -34,6 +58,9 @@ const userCtrl = {
     try {
       const { name, email, role, sdt, address } = req.body;
 
+      if (!isEmail(email)) {
+        return res.json({ msg: "Email ?? ", login: false });
+      }
       // check email is already exist
       const user = await Users.findOne({ username: email });
       if (user) {
@@ -43,7 +70,7 @@ const userCtrl = {
       // Password Encryption
       const passwordHash = await bcrypt.hash(req.body.password, 10);
       const newUser = new Users({
-        name,
+        name: validateName(name),
         username: email,
         password: passwordHash,
         role,
@@ -54,7 +81,7 @@ const userCtrl = {
       // Save mongodb
       await newUser.save();
 
-      res.json({ msg: "Register successfully", register: true });
+      return res.json({ msg: "Register successfully", register: true });
     } catch (error) {
       return res.status(500).json({ msg: error.message });
     }
