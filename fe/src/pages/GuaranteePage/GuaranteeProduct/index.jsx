@@ -53,7 +53,7 @@ function GuaranteeProduct() {
                 }
                 if (res) {
                     // console.log(res.data);
-                    setRows(res.data.guaranteeOrders);
+                    setRows(res.data.guaranteeOrders.reverse());
                     setListProducts(res.data.productGuarantees);
                     // console.log(res.data.productGuarantees);
                 }

@@ -15,7 +15,7 @@ function AgencyDelivery() {
             try {
                 const res = await axios.get(`http://localhost:5001/delivery/from/${localStorage.getItem('idPage')}`);
                 // console.log(res.data);
-                setDeliveries(res.data);
+                setDeliveries(res.data.reverse());
             } catch (e) {
                 console.log(e);
             }

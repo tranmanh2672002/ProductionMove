@@ -18,7 +18,7 @@ function GuaranteeDelivery() {
                 const newDeliveries = res.data.filter((delivery) => {
                     return delivery.status !== 'Giao hàng thành công';
                 });
-                setDeliveries(newDeliveries);
+                setDeliveries(newDeliveries.reverse());
             } catch (e) {
                 console.log(e);
             }

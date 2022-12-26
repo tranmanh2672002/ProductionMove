@@ -32,6 +32,7 @@ function AgencySold() {
     const [rows, setRows] = useState([]);
     const navigate = useNavigate();
     const [listProducts, setListProducts] = useState([]);
+    const [storage, setStorage] = useState([]);
 
     const [openModalCreate, setOpenModalCreate] = useState(false);
     const [nameAgency, setNameAgency] = useState('');
@@ -50,10 +51,12 @@ function AgencySold() {
         const getData = async () => {
             try {
                 const res = await axios.get(`http://localhost:5001/agency/order/${localStorage.getItem('idPage')}`);
-                // console.log(res.data);
-                setRows(res.data.orders);
+                const resStorage = await axios.get(`http://localhost:5001/agency/${localStorage.getItem('idPage')}`);
+                console.log(res.data);
+                setRows(res.data.orders.reverse());
                 setNameAgency(res.data.nameAgency);
                 setListProducts(res.data.products);
+                setStorage(resStorage.data.agency.storage);
             } catch (err) {
                 console.error(err);
             }
@@ -64,6 +67,13 @@ function AgencySold() {
     const PriceVND = (price) => {
         const priceVND = Intl.NumberFormat('en-US').format;
         return priceVND(price);
+    };
+
+    const getPriceByID = (id) => {
+        const product = listProducts.find((product) => {
+            return product._id === id;
+        });
+        return product.price;
     };
 
     const getDate = (data) => {
@@ -91,7 +101,23 @@ function AgencySold() {
     };
 
     const handleCreateOrder = async () => {
+
+        const rest = storage.filter((item) => {
+            return item.id !== codeProduct;
+        });
+        const productImport = storage.find((item) => {
+            return item.id === codeProduct;
+        });
+        var amount = productImport.amount - 1;
+        console.log(amount);
+
         try {
+
+            await axios.post('http://localhost:5001/agency/updateAmount', {
+                id: localStorage.getItem('idPage'),
+                storage: [{ id: codeProduct, amount: amount }, ...rest],
+            });
+
             const res = await axios.post('http://localhost:5001/agency/createOder', {
                 idAgency: localStorage.getItem('idPage'),
                 nameAgency: nameAgency,
@@ -101,6 +127,7 @@ function AgencySold() {
                 price: Number(price),
                 idProduct: codeProduct,
             });
+
             if (res.data.create) {
                 alert(res.data.msg);
                 window.location.reload();
@@ -268,6 +295,7 @@ function AgencySold() {
                                 onChange={(e) => {
                                     console.log(e.target.value);
                                     setCodeProduct(e.target.value);
+                                    setPrice(getPriceByID(e.target.value));
                                 }}
                             >
                                 {listProducts.map((product) => {

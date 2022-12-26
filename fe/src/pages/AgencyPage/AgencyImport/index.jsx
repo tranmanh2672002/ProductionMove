@@ -19,7 +19,7 @@ function AgencyImport() {
                 const newDeliveries = res.data.filter((delivery) => {
                     return delivery.status !== 'Giao hàng thành công';
                 });
-                setDeliveries(newDeliveries);
+                setDeliveries(newDeliveries.reverse());
                 setStorage(resStorage.data.agency.storage);
             } catch (e) {
                 console.log(e);
