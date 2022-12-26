@@ -27,7 +27,6 @@ import FactoryStorage from "~/pages/FactoryPage/FactoryStorage";
 import GuaranteePage from "~/pages/GuaranteePage";
 import GuaranteeDelivery from "~/pages/GuaranteePage/GuaranteeDelivery";
 import GuaranteeProduct from "~/pages/GuaranteePage/GuaranteeProduct";
-import GuaranteeStatistical from "~/pages/GuaranteePage/GuaranteeStatistical";
 import LoginPage from "~/pages/LoginPage";
 
 const publicRoutes = [
@@ -163,10 +162,6 @@ const privateGuaranteeRoutes = [
     {
         path: '/Guarantee/product',
         component: GuaranteeProduct,
-    },
-    {
-        path: '/Guarantee/statistical',
-        component: GuaranteeStatistical,
     },
 ];
 

@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './SideBar.scss';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
 
 function SideBarGuarantee() {
     return (
@@ -48,10 +47,6 @@ function SideBarGuarantee() {
                     <NavLink to="/guarantee/product" className="SideBarGuarantee__link">
                         <WorkspacePremiumOutlinedIcon className="SideBarGuarantee__link-icon" />
                         Đang bảo hành
-                    </NavLink>
-                    <NavLink to="/guarantee/statistical" className="SideBarGuarantee__link">
-                        <LeaderboardOutlinedIcon className="SideBarGuarantee__link-icon" />
-                        Thống kê
                     </NavLink>
                 </Box>
             </Box>
