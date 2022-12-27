@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Skeleton, Stack } from '@mui/material';
 import factoryLogo from '~/assets/image/factorylogo.jpg';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -38,31 +38,40 @@ function AdminFactory() {
                     }}
                 >
                     <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
-                        {factories.map((factory) => {
-                            return (
-                                <Card
-                                    key={factory._id}
-                                    sx={{ maxWidth: 345, margin: '0 20px' }}
-                                    onClick={() => {
-                                        navigate(`/admin/factory/${factory._id}`);
-                                    }}
-                                >
-                                    <CardActionArea>
-                                        <CardMedia component="img" height="250" image={factoryLogo} alt="Image" />
-                                        <CardContent>
-                                            <Typography
-                                                sx={{ textAlign: 'center', fontSize: '1.2rem' }}
-                                                gutterBottom
-                                                variant="h4"
-                                                component="div"
-                                            >
-                                                {factory.name}
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            );
-                        })}
+                        {factories.length > 0 ? (
+                            factories.map((factory) => {
+                                return (
+                                    <Card
+                                        key={factory._id}
+                                        sx={{ maxWidth: 345, margin: '0 20px' }}
+                                        onClick={() => {
+                                            navigate(`/admin/factory/${factory._id}`);
+                                        }}
+                                    >
+                                        <CardActionArea>
+                                            <CardMedia component="img" height="250" image={factoryLogo} alt="Image" />
+                                            <CardContent>
+                                                <Typography
+                                                    sx={{ textAlign: 'center', fontSize: '1.2rem' }}
+                                                    gutterBottom
+                                                    variant="h4"
+                                                    component="div"
+                                                >
+                                                    {factory.name}
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                );
+                            })
+                        ) : (
+                            <>
+                                <Stack spacing={4} direction="row">
+                                    <Skeleton variant="rounded" width={350} height={300} />
+                                    <Skeleton variant="rounded" width={350} height={300} />
+                                </Stack>
+                            </>
+                        )}
                     </Box>
                 </Box>
             </>

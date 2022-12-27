@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, Skeleton, Stack, Typography } from '@mui/material';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 import axios from 'axios';
@@ -89,10 +89,10 @@ function AgencyGuarantee() {
     const handleDeliveryGuarantee = async () => {
         // console.log(localStorage.getItem('idPage'), localStorage.getItem('name'), idGuaranteeExport, idGuaranteeOrder);
         // console.log(idGuaranteeExport);
-        
-        let guarantee = listGuarantees.find(guarantee => {
+
+        let guarantee = listGuarantees.find((guarantee) => {
             return guarantee._id === idGuaranteeExport;
-        })
+        });
 
         try {
             const res = await axios.post('http://localhost:5001/delivery/createDeliveryByAgency', {
@@ -143,61 +143,74 @@ function AgencyGuarantee() {
                 </Button>
 
                 <TableContainer sx={{ marginTop: '10px' }} component={Paper}>
-                    <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>STT</TableCell>
-                                <TableCell>Mã đơn hàng</TableCell>
-                                <TableCell>Tên sản phẩm</TableCell>
-                                <TableCell>Lỗi</TableCell>
-                                <TableCell>Thời gian</TableCell>
-                                <TableCell></TableCell>
-                                <TableCell></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row, index) => (
-                                <TableRow
-                                    id={row._id}
-                                    className="row"
-                                    key={row._id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell component="th" scope="row" sx={{ maxWidth: '200px' }}>
-                                        {row.idOrder}
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: '200px' }}>{getNameProduct(row.idOrder)}</TableCell>
-                                    <TableCell>{row.error}</TableCell>
-                                    <TableCell>{getDate(row.createdAt)}</TableCell>
-                                    <TableCell>
-                                        <Button
-                                            onClick={() => {
-                                                setIdGuaranteeOrder(row._id);
-                                                setOpenModalCustomer(true);
-                                            }}
-                                            variant="outlined"
-                                            color="secondary"
-                                        >
-                                            Giao hàng
-                                        </Button>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Button
-                                            onClick={() => {
-                                                setIdGuaranteeOrder(row._id);
-                                                setOpenModalGuarantee(true);
-                                            }}
-                                            variant="outlined"
-                                            color="primary"
-                                        >
-                                            Trung tâm bảo hành
-                                        </Button>
-                                    </TableCell>
+                    {rows.length > 0 ? (
+                        <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>STT</TableCell>
+                                    <TableCell>Mã đơn hàng</TableCell>
+                                    <TableCell>Tên sản phẩm</TableCell>
+                                    <TableCell>Lỗi</TableCell>
+                                    <TableCell>Thời gian</TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell></TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row, index) => (
+                                    <TableRow
+                                        id={row._id}
+                                        className="row"
+                                        key={row._id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell>{index + 1}</TableCell>
+                                        <TableCell component="th" scope="row" sx={{ maxWidth: '200px' }}>
+                                            {row.idOrder}
+                                        </TableCell>
+                                        <TableCell sx={{ maxWidth: '200px' }}>{getNameProduct(row.idOrder)}</TableCell>
+                                        <TableCell>{row.error}</TableCell>
+                                        <TableCell>{getDate(row.createdAt)}</TableCell>
+                                        <TableCell>
+                                            <Button
+                                                onClick={() => {
+                                                    setIdGuaranteeOrder(row._id);
+                                                    setOpenModalCustomer(true);
+                                                }}
+                                                variant="outlined"
+                                                color="secondary"
+                                            >
+                                                Giao hàng
+                                            </Button>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Button
+                                                onClick={() => {
+                                                    setIdGuaranteeOrder(row._id);
+                                                    setOpenModalGuarantee(true);
+                                                }}
+                                                variant="outlined"
+                                                color="primary"
+                                            >
+                                                Trung tâm bảo hành
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    ) : (
+                        <>
+                            <Stack spacing={1} sx={{padding: '0 10px'}}>
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                            </Stack>
+                        </>
+                    )}
                 </TableContainer>
             </Box>
             {/* Modal delivery customer */}

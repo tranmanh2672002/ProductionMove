@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, Skeleton, Stack, TextField, Typography } from '@mui/material';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 import axios from 'axios';
@@ -45,7 +45,6 @@ function AgencySold() {
     const [openModalGuarantee, setOpenModalGuarantee] = useState(false);
     const [idOrder, setIdOrder] = useState('');
     const [error, setError] = useState('');
-
 
     useEffect(() => {
         const getData = async () => {
@@ -101,7 +100,6 @@ function AgencySold() {
     };
 
     const handleCreateOrder = async () => {
-
         const rest = storage.filter((item) => {
             return item.id !== codeProduct;
         });
@@ -112,7 +110,6 @@ function AgencySold() {
         console.log(amount);
 
         try {
-
             await axios.post('http://localhost:5001/agency/updateAmount', {
                 id: localStorage.getItem('idPage'),
                 storage: [{ id: codeProduct, amount: amount }, ...rest],
@@ -171,66 +168,94 @@ function AgencySold() {
                 </Button>
 
                 <TableContainer sx={{ marginTop: '10px' }} component={Paper}>
-                    <Button sx={{marginLeft: '10px'}} onClick={() => setOpenModalCreate(true)} variant="outlined" color="secondary">
+                    <Button
+                        sx={{ marginLeft: '10px' }}
+                        onClick={() => setOpenModalCreate(true)}
+                        variant="outlined"
+                        color="secondary"
+                    >
                         Tạo hóa đơn
                     </Button>
-                    <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>STT</TableCell>
-                                <TableCell>Tên sản phẩm</TableCell>
-                                <TableCell>ID khách hàng</TableCell>
-                                <TableCell>Giá</TableCell>
-                                <TableCell>Thời gian</TableCell>
-                                <TableCell>Bảo hành</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row, index) => (
-                                <TableRow
-                                    id={row._id}
-                                    className="row"
-                                    key={row._id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell component="th" scope="row" sortDirection="desc">
-                                        {row.nameProduct}
-                                    </TableCell>
-                                    <TableCell>{row.idCustomer}</TableCell>
-                                    <TableCell>{PriceVND(row.price)}</TableCell>
-                                    <TableCell>{getDate(row.createdAt)}</TableCell>
-                                    <TableCell>
-                                        {compareDate(row.createdAt) > 365 ? (
-                                            <Button onClick={() => {}} variant="outlined" disabled color="secondary">
-                                                Hết bảo hành
-                                            </Button>
-                                        ) : (
-                                            <>
-                                                {row.status === 'not guarantee' ? (
-                                                    <Button onClick={() => {
-                                                        setIdOrder(row._id);
-                                                        setOpenModalGuarantee(true);
-                                                    }} variant="outlined" color="primary">
-                                                        Bảo hành
-                                                    </Button>
-                                                ) : (
-                                                    <Button
-                                                        onClick={() => {}}
-                                                        sx={{ color: 'red !important', border: '1px solid red !important' }}
-                                                        disabled
-                                                        variant="outlined"
-                                                    >
-                                                        Đang bảo hành
-                                                    </Button>
-                                                )}
-                                            </>
-                                        )}
-                                    </TableCell>
+                    {rows.length > 0 ? (
+                        <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>STT</TableCell>
+                                    <TableCell>Tên sản phẩm</TableCell>
+                                    <TableCell>ID khách hàng</TableCell>
+                                    <TableCell>Giá</TableCell>
+                                    <TableCell>Thời gian</TableCell>
+                                    <TableCell>Bảo hành</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row, index) => (
+                                    <TableRow
+                                        id={row._id}
+                                        className="row"
+                                        key={row._id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell>{index + 1}</TableCell>
+                                        <TableCell component="th" scope="row" sortDirection="desc">
+                                            {row.nameProduct}
+                                        </TableCell>
+                                        <TableCell>{row.idCustomer}</TableCell>
+                                        <TableCell>{PriceVND(row.price)}</TableCell>
+                                        <TableCell>{getDate(row.createdAt)}</TableCell>
+                                        <TableCell>
+                                            {compareDate(row.createdAt) > 365 ? (
+                                                <Button
+                                                    onClick={() => {}}
+                                                    variant="outlined"
+                                                    disabled
+                                                    color="secondary"
+                                                >
+                                                    Hết bảo hành
+                                                </Button>
+                                            ) : (
+                                                <>
+                                                    {row.status === 'not guarantee' ? (
+                                                        <Button
+                                                            onClick={() => {
+                                                                setIdOrder(row._id);
+                                                                setOpenModalGuarantee(true);
+                                                            }}
+                                                            variant="outlined"
+                                                            color="primary"
+                                                        >
+                                                            Bảo hành
+                                                        </Button>
+                                                    ) : (
+                                                        <Button
+                                                            onClick={() => {}}
+                                                            sx={{
+                                                                color: 'red !important',
+                                                                border: '1px solid red !important',
+                                                            }}
+                                                            disabled
+                                                            variant="outlined"
+                                                        >
+                                                            Đang bảo hành
+                                                        </Button>
+                                                    )}
+                                                </>
+                                            )}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    ) : (
+                        <Stack spacing={1} sx={{padding: '0 10px'}}>
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                            </Stack>
+                    )}
                 </TableContainer>
             </Box>
             {/* Modal create order */}
@@ -343,10 +368,15 @@ function AgencySold() {
             >
                 <Fade in={openModalGuarantee}>
                     <Box sx={styleModal}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2" sx={{textAlign: 'center'}}>
+                        <Typography
+                            id="transition-modal-title"
+                            variant="h6"
+                            component="h2"
+                            sx={{ textAlign: 'center' }}
+                        >
                             Chuyển vào danh sách bảo hành
                         </Typography>
-                        
+
                         <TextField
                             sx={{ marginTop: '15px' }}
                             label="Lỗi sản phẩm"
@@ -356,10 +386,10 @@ function AgencySold() {
                             value={error}
                             onChange={(e) => setError(e.target.value)}
                         />
-                        <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '15px'}}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
                             <Button
-                                sx={{ marginTop: '10px',}}
-                                color= 'secondary'
+                                sx={{ marginTop: '10px' }}
+                                color="secondary"
                                 variant="contained"
                                 type="submit"
                                 onClick={() => setOpenModalGuarantee(false)}

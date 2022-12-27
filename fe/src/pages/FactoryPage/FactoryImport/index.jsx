@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, Skeleton, Stack, TextField, Typography } from '@mui/material';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 
 import axios from 'axios';
@@ -59,15 +59,15 @@ function FactoryImport() {
     }, []);
 
     const handleClickImport = async () => {
-        const rest = storage.filter(item => {
+        const rest = storage.filter((item) => {
             return item.id !== idProduct;
-        })
+        });
         var amount = Number(amountImport) + getAmount(idProduct);
 
         try {
             const res = await axios.post('http://localhost:5001/factory/updateAmount', {
                 id: localStorage.getItem('idPage'),
-                storage: [{id: idProduct, amount: amount}, ...rest],
+                storage: [{ id: idProduct, amount: amount }, ...rest],
             });
             if (res.data.update) {
                 window.location.reload();
@@ -95,47 +95,60 @@ function FactoryImport() {
                     Quay lại
                 </Button>
 
-                <TableContainer sx={{marginTop: '10px'}} component={Paper}>
-                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>STT</TableCell>
-                                <TableCell>Mã Sản Phẩm</TableCell>
-                                <TableCell>Tên sản phẩm</TableCell>
-                                <TableCell>Số lượng</TableCell>
-                                <TableCell></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row, index) => (
-                                <TableRow
-                                    id={row._id}
-                                    className="row"
-                                    key={row._id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell component="th" scope="row" sortDirection="desc">
-                                        {row.code}
-                                    </TableCell>
-                                    <TableCell>{row.name}</TableCell>
-                                    <TableCell>{getAmount(row._id)}</TableCell>
-                                    <TableCell>
-                                        <Button
-                                            variant="outlined"
-                                            color="secondary"
-                                            onClick={() => {
-                                                setOpenModal(true);
-                                                setIdProduct(row._id);
-                                            }}
-                                        >
-                                            Nhập hàng
-                                        </Button>
-                                    </TableCell>
+                <TableContainer sx={{ marginTop: '10px' }} component={Paper}>
+                    {rows.length > 0 ? (
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>STT</TableCell>
+                                    <TableCell>Mã Sản Phẩm</TableCell>
+                                    <TableCell>Tên sản phẩm</TableCell>
+                                    <TableCell>Số lượng</TableCell>
+                                    <TableCell></TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row, index) => (
+                                    <TableRow
+                                        id={row._id}
+                                        className="row"
+                                        key={row._id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell>{index + 1}</TableCell>
+                                        <TableCell component="th" scope="row" sortDirection="desc">
+                                            {row.code}
+                                        </TableCell>
+                                        <TableCell>{row.name}</TableCell>
+                                        <TableCell>{getAmount(row._id)}</TableCell>
+                                        <TableCell>
+                                            <Button
+                                                variant="outlined"
+                                                color="secondary"
+                                                onClick={() => {
+                                                    setOpenModal(true);
+                                                    setIdProduct(row._id);
+                                                }}
+                                            >
+                                                Nhập hàng
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    ) : (
+                        <>
+                            <Stack spacing={1} sx={{ padding: '0 10px' }}>
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                            </Stack>
+                        </>
+                    )}
                 </TableContainer>
             </Box>
             {/* Modal import amount product */}
@@ -157,7 +170,7 @@ function FactoryImport() {
                         </Typography>
                         <TextField
                             sx={{ margin: '15px 0' }}
-                            label= "Số lượng"
+                            label="Số lượng"
                             variant="standard"
                             fullWidth
                             type="number"

@@ -152,6 +152,10 @@ const privateAgencyRoutes = [
 
 const privateGuaranteeRoutes = [
     {
+        path: '/',
+        component: GuaranteePage,
+    },
+    {
         path: '/Guarantee',
         component: GuaranteePage,
     },

@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Skeleton } from '@mui/material';
 import { Typography } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
@@ -23,6 +23,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { Stack } from '@mui/system';
 
 const styleModal = {
     position: 'absolute',
@@ -139,7 +140,7 @@ function UserGuaranteeDetails() {
                     overflowY: 'scroll',
                 }}
             >
-                <Button onClick={() => navigate('/admin/user')} variant='outlined' sx={{ margin: '10px',}}>
+                <Button onClick={() => navigate('/admin/user')} variant="outlined" sx={{ margin: '10px' }}>
                     <KeyboardArrowLeftOutlinedIcon />
                     Quay lại
                 </Button>
@@ -165,68 +166,81 @@ function UserGuaranteeDetails() {
                 </Button>
 
                 <TableContainer sx={{ marginBottom: '40px' }} component={Paper}>
-                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>STT</TableCell>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Email</TableCell>
-                                {/* <TableCell>Password</TableCell> */}
-                                <TableCell>SDT</TableCell>
-                                <TableCell>Address</TableCell>
-                                <TableCell align="center">Chỉnh sửa</TableCell>
-                                <TableCell align="center">Xóa</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row, index) => (
-                                <TableRow
-                                    id={row._id}
-                                    className="row"
-                                    key={index}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell component="th" scope="row" sortDirection="desc">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell>{row.username}</TableCell>
-                                    {/* <TableCell size="small">{row.password}</TableCell> */}
-                                    <TableCell>{row.sdt}</TableCell>
-                                    <TableCell>{row.address}</TableCell>
-                                    <TableCell
-                                        align="center"
-                                        onClick={() => {
-                                            setOpenModalEdit(true);
-                                            setId(row._id);
-                                            setName(row.name);
-                                            setEmail(row.username);
-                                            setAddress(row.address);
-                                            setSdt(row.sdt);
-                                        }}
+                    {rows.length > 0 ? (
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>STT</TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    {/* <TableCell>Password</TableCell> */}
+                                    <TableCell>SDT</TableCell>
+                                    <TableCell>Address</TableCell>
+                                    <TableCell align="center">Chỉnh sửa</TableCell>
+                                    <TableCell align="center">Xóa</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row, index) => (
+                                    <TableRow
+                                        id={row._id}
+                                        className="row"
+                                        key={index}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <Button variant="text">
-                                            <EditOutlinedIcon />
-                                            Edit
-                                        </Button>
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <Button
-                                            variant="text"
-                                            color="error"
+                                        <TableCell>{index + 1}</TableCell>
+                                        <TableCell component="th" scope="row" sortDirection="desc">
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell>{row.username}</TableCell>
+                                        {/* <TableCell size="small">{row.password}</TableCell> */}
+                                        <TableCell>{row.sdt}</TableCell>
+                                        <TableCell>{row.address}</TableCell>
+                                        <TableCell
+                                            align="center"
                                             onClick={() => {
-                                                setOpenModalDelete(true);
+                                                setOpenModalEdit(true);
                                                 setId(row._id);
+                                                setName(row.name);
+                                                setEmail(row.username);
+                                                setAddress(row.address);
+                                                setSdt(row.sdt);
                                             }}
                                         >
-                                            <DeleteSweepOutlinedIcon />
-                                            Delete
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                                            <Button variant="text">
+                                                <EditOutlinedIcon />
+                                                Edit
+                                            </Button>
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            <Button
+                                                variant="text"
+                                                color="error"
+                                                onClick={() => {
+                                                    setOpenModalDelete(true);
+                                                    setId(row._id);
+                                                }}
+                                            >
+                                                <DeleteSweepOutlinedIcon />
+                                                Delete
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    ) : (
+                        <>
+                            <Stack spacing={1} sx={{ padding: '0 10px' }}>
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                            </Stack>
+                        </>
+                    )}
                 </TableContainer>
             </Box>
             {/* Modal Create user admin */}

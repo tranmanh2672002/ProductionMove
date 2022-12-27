@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Skeleton, Stack, Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
@@ -34,9 +34,9 @@ function Agency() {
                     overflowY: 'scroll',
                 }}
             >
-                {agency ? (
-                    <>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
+                    {agency ? (
+                        <>
                             <Card sx={{ maxWidth: 750, margin: '0 20px' }}>
                                 <CardActionArea>
                                     <CardMedia
@@ -74,11 +74,15 @@ function Agency() {
                                     </CardContent>
                                 </CardActionArea>
                             </Card>
-                        </Box>
-                    </>
-                ) : (
-                    <></>
-                )}
+                        </>
+                    ) : (
+                        <>
+                            <Stack>
+                                <Skeleton variant="rounded" width={400} height={400} />
+                            </Stack>
+                        </>
+                    )}
+                </Box>
             </Box>
         </>
     );

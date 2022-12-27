@@ -12,7 +12,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
-
+import Skeleton from '@mui/material/Skeleton';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -20,6 +20,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { Stack } from '@mui/system';
 
 const styleModal = {
     position: 'absolute',
@@ -78,7 +79,7 @@ function AdminProduct() {
             console.log('Register failed: ' + err.message);
         }
     };
-    
+
     // update product
     const handleEdit = async () => {
         try {
@@ -117,7 +118,7 @@ function AdminProduct() {
     const PriceVND = (price) => {
         const priceVND = Intl.NumberFormat('en-US').format;
         return priceVND(price);
-    }
+    };
 
     return (
         <>
@@ -154,66 +155,79 @@ function AdminProduct() {
                 </Button>
 
                 <TableContainer sx={{ marginBottom: '40px' }} component={Paper}>
-                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>STT</TableCell>
-                                <TableCell>Code</TableCell>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Price</TableCell>
-                                {/* <TableCell>Password</TableCell> */}
-                                <TableCell align="center">Chỉnh sửa</TableCell>
-                                <TableCell align="center">Xóa</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row, index) => (
-                                <TableRow
-                                    id={row._id}
-                                    className="row"
-                                    key={index}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell component="th" scope="row" sortDirection="desc">
-                                        {row.code}
-                                    </TableCell>
-                                    <TableCell>{row.name}</TableCell>
-                                    <TableCell>{PriceVND(row.price)}</TableCell>
-                                    <TableCell
-                                        align="center"
-                                        onClick={() => {
-                                            setOpenModalEdit(true);
-                                            setId(row._id);
-                                            setName(row.name);
-                                            setCode(row.code);
-                                            setDescription(row.description);
-                                            setImage(row.image);
-                                            setPrice(row.price);
-                                        }}
+                    {rows.length > 0 ? (
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>STT</TableCell>
+                                    <TableCell>Code</TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Price</TableCell>
+                                    {/* <TableCell>Password</TableCell> */}
+                                    <TableCell align="center">Chỉnh sửa</TableCell>
+                                    <TableCell align="center">Xóa</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row, index) => (
+                                    <TableRow
+                                        id={row._id}
+                                        className="row"
+                                        key={index}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <Button variant="text">
-                                            <EditOutlinedIcon />
-                                            Edit
-                                        </Button>
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <Button
-                                            variant="text"
-                                            color="error"
+                                        <TableCell>{index + 1}</TableCell>
+                                        <TableCell component="th" scope="row" sortDirection="desc">
+                                            {row.code}
+                                        </TableCell>
+                                        <TableCell>{row.name}</TableCell>
+                                        <TableCell>{PriceVND(row.price)}</TableCell>
+                                        <TableCell
+                                            align="center"
                                             onClick={() => {
-                                                setOpenModalDelete(true);
+                                                setOpenModalEdit(true);
                                                 setId(row._id);
+                                                setName(row.name);
+                                                setCode(row.code);
+                                                setDescription(row.description);
+                                                setImage(row.image);
+                                                setPrice(row.price);
                                             }}
                                         >
-                                            <DeleteSweepOutlinedIcon />
-                                            Delete
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                                            <Button variant="text">
+                                                <EditOutlinedIcon />
+                                                Edit
+                                            </Button>
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            <Button
+                                                variant="text"
+                                                color="error"
+                                                onClick={() => {
+                                                    setOpenModalDelete(true);
+                                                    setId(row._id);
+                                                }}
+                                            >
+                                                <DeleteSweepOutlinedIcon />
+                                                Delete
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    ) : (
+                        <>
+                            <Stack spacing={1} sx={{padding: '0 10px'}}>
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                                <Skeleton variant="rounded" width={'100%'} height={40} />
+                            </Stack>
+                        </>
+                    )}
                 </TableContainer>
             </Box>
             {/* Modal Create product */}
@@ -321,7 +335,7 @@ function AdminProduct() {
                             Edit Product
                         </Typography>
                         <ValidatorForm onSubmit={handleEdit}>
-                        <TextValidator
+                            <TextValidator
                                 sx={{ marginTop: '10px' }}
                                 fullWidth
                                 value={code}

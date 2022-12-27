@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Skeleton, Stack } from '@mui/material';
 import guaranteeLogo from '~/assets/image/guaranteelogo.jpg';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -40,8 +40,9 @@ function AdminGuarantee() {
                     }}
                 >
                     <Box sx={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
-                        {guarantee.map((guarantee) => {
-                            return (
+                        {guarantee.length > 0 ? (
+                            guarantee.map((guarantee) => {
+                                return (
                                     <Card
                                         key={guarantee._id}
                                         sx={{ maxWidth: 345, margin: '0 20px' }}
@@ -50,12 +51,7 @@ function AdminGuarantee() {
                                         }}
                                     >
                                         <CardActionArea>
-                                            <CardMedia
-                                                component="img"
-                                                height="250"
-                                                image={guaranteeLogo}
-                                                alt="Image"
-                                            />
+                                            <CardMedia component="img" height="250" image={guaranteeLogo} alt="Image" />
                                             <CardContent>
                                                 <Typography
                                                     sx={{ textAlign: 'center', fontSize: '1.2rem' }}
@@ -68,8 +64,16 @@ function AdminGuarantee() {
                                             </CardContent>
                                         </CardActionArea>
                                     </Card>
-                            );
-                        })}
+                                );
+                            })
+                        ) : (
+                            <>
+                                <Stack spacing={4} direction="row">
+                                    <Skeleton variant="rounded" width={350} height={300} />
+                                    <Skeleton variant="rounded" width={350} height={300} />
+                                </Stack>
+                            </>
+                        )}
                     </Box>
                 </Box>
             </>
