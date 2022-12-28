@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import axios from 'axios';
@@ -19,12 +20,15 @@ export default function Login() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [error, setError] = React.useState('');
+    const [loading, setLoading] = React.useState(false);
 
     const navigate = useNavigate();
 
     const handleSubmit = async () => {
+        setLoading(true);
         try {
             const res = await axios.post('http://localhost:5001/user/login', { username, password });
+            setLoading(false);
             if (res.data.login) {
                 setUsername('');
                 setPassword('');
@@ -58,7 +62,7 @@ export default function Login() {
                     sx={{
                         backgroundImage: 'url(https://source.unsplash.com/random)',
                         // backgroundImage:
-                            // 'url(https://images.wallpaperscraft.com/image/single/anonymous_hacker_mask_200159_3840x2160.jpg)',
+                        // 'url(https://images.wallpaperscraft.com/image/single/anonymous_hacker_mask_200159_3840x2160.jpg)',
 
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
@@ -78,7 +82,7 @@ export default function Login() {
                             alignItems: 'center',
                         }}
                     >
-                        <Typography sx={{fontWeight: '400'}} component="h1" variant="h2" mb={2}>
+                        <Typography sx={{ fontWeight: '400' }} component="h1" variant="h2" mb={2}>
                             BigCorp
                         </Typography>
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -126,6 +130,7 @@ export default function Login() {
                             >
                                 {error}
                             </Typography>
+
                             <Button
                                 color="secondary"
                                 type="submit"
@@ -138,6 +143,13 @@ export default function Login() {
                                 Đăng nhập
                             </Button>
                         </ValidatorForm>
+                        {loading ? (
+                            <Box sx={{marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
+                                <CircularProgress />
+                            </Box>
+                        ) : (
+                            <></>
+                        )}
                     </Box>
                 </Grid>
             </Grid>

@@ -18,7 +18,7 @@ try {
     console.log(err);
 }
 
-route(app)
+route(app);
 
 app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`);
